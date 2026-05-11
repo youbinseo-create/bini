@@ -887,6 +887,10 @@ const againBtn = document.querySelector("#againBtn");
 const closeResultBtn = document.querySelector("#closeResultBtn");
 const STORAGE_KEY = "card-playground-records-v1";
 const PLAYER_KEY = "card-playground-player-v1";
+const RANKING_API_URL = "";
+const RANKING_GAME_ID = "card-playground-v1";
+let sharedRecords = {};
+let sharedRecordsLoading = false;
 
 function renderDeckOptions() {
   const builtIn = Object.entries(decks).map(([key, deck]) => `
@@ -911,7 +915,7 @@ function renderDeckOptions() {
       selectedDeck = button.dataset.deck;
       renderDeckOptions();
       updateDeckStat();
-      renderRecords();
+      refreshRecords();
     });
   });
 }
@@ -929,7 +933,7 @@ function renderDifficultyOptions() {
       renderDifficultyOptions();
       matchStat.textContent = `0/${selectedCards / 2}`;
       board.dataset.size = selectedCards;
-      renderRecords();
+      refreshRecords();
     });
   });
 }
@@ -946,6 +950,10 @@ function recordKey() {
   return `${selectedDeck}-${selectedCards}`;
 }
 
+function sharedRankingEnabled() {
+  return Boolean(RANKING_API_URL) && selectedDeck !== "custom";
+}
+
 function loadRecords() {
   try {
     return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
@@ -959,7 +967,8 @@ function saveRecords(records) {
 }
 
 function renderRecords() {
-  const records = loadRecords()[recordKey()] || [];
+  const usingShared = sharedRankingEnabled();
+  const records = usingShared ? sharedRecords[recordKey()] || [] : loadRecords()[recordKey()] || [];
   recordList.innerHTML = records.map((record, index) => `
     <li>
       <b>${index + 1}</b>
@@ -967,7 +976,53 @@ function renderRecords() {
       <small>${formatTime(record.seconds)} · ${record.moves}회</small>
     </li>
   `).join("");
+  if (usingShared && sharedRecordsLoading) {
+    recordEmpty.textContent = "공용 랭킹을 불러오는 중이에요.";
+  } else if (usingShared) {
+    recordEmpty.textContent = "아직 공용 기록이 없어요. 첫 기록을 세워보세요.";
+  } else {
+    recordEmpty.textContent = selectedDeck === "custom" ? "내 사진 덱은 이 폰 안에만 기록돼요." : "아직 기록이 없어요. 첫 판을 시작해보세요.";
+  }
   recordEmpty.style.display = records.length ? "none" : "block";
+}
+
+function refreshRecords() {
+  renderRecords();
+  if (sharedRankingEnabled()) {
+    loadSharedRecords();
+  }
+}
+
+function loadSharedRecords() {
+  sharedRecordsLoading = true;
+  renderRecords();
+  const callbackName = `cardRankings_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
+  const script = document.createElement("script");
+  const url = new URL(RANKING_API_URL);
+  url.searchParams.set("game", RANKING_GAME_ID);
+  url.searchParams.set("deck", selectedDeck);
+  url.searchParams.set("cards", selectedCards);
+  url.searchParams.set("callback", callbackName);
+
+  window[callbackName] = data => {
+    sharedRecordsLoading = false;
+    delete window[callbackName];
+    script.remove();
+    if (data && Array.isArray(data.records)) {
+      sharedRecords[recordKey()] = data.records;
+    }
+    renderRecords();
+  };
+
+  script.onerror = () => {
+    sharedRecordsLoading = false;
+    delete window[callbackName];
+    script.remove();
+    renderRecords();
+  };
+
+  script.src = url.toString();
+  document.body.appendChild(script);
 }
 
 function savePlayerName() {
@@ -1346,6 +1401,7 @@ function finishGame() {
   recordMessage.textContent = saved.isBest ? "새 최고 기록!" : saved.rank <= 5 ? `${saved.rank}위 기록에 올라갔어요.` : "완주했어요. TOP 5까지 조금만 더!";
   latestResultText = `${currentPlayerName()}의 카드 놀이터 기록: ${getActiveDeckTitle()} ${selectedCards}장 ${timeText}, ${moves}회!`;
   renderRecords();
+  submitSharedResult(saved.record);
   launchConfetti();
   playWinSound();
   resultModal.classList.add("show");
@@ -1389,9 +1445,38 @@ function saveResult(seconds) {
   records[key] = sorted.slice(0, 5);
   saveRecords(records);
   return {
+    record: nextRecord,
     rank,
     isBest: !bestBefore || seconds < bestBefore.seconds || (seconds === bestBefore.seconds && moves < bestBefore.moves)
   };
+}
+
+function submitSharedResult(record) {
+  if (!sharedRankingEnabled()) return;
+
+  const payload = {
+    game: RANKING_GAME_ID,
+    deck: selectedDeck,
+    deckTitle: getActiveDeckTitle(),
+    cards: selectedCards,
+    name: record.name,
+    seconds: record.seconds,
+    moves: record.moves,
+    createdAt: record.createdAt
+  };
+
+  fetch(RANKING_API_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify(payload)
+  }).then(() => {
+    setTimeout(loadSharedRecords, 900);
+  }).catch(() => {
+    recordMessage.textContent = "이 폰에는 저장됐고, 공용 랭킹 전송은 잠시 실패했어요.";
+  });
 }
 
 function launchConfetti() {
@@ -1468,7 +1553,7 @@ photoInput.addEventListener("change", event => {
   selectedDeck = "custom";
   renderDeckOptions();
   updateDeckStat();
-  renderRecords();
+  refreshRecords();
 });
 
 playerNameInput.addEventListener("input", savePlayerName);
@@ -1482,7 +1567,7 @@ renderDeckOptions();
 renderDifficultyOptions();
 updateDeckStat();
 matchStat.textContent = `0/${selectedCards / 2}`;
-renderRecords();
+refreshRecords();
 </script>
 </body>
 </html>
