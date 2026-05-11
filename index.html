@@ -226,6 +226,28 @@
     background: #fff;
   }
 
+  .player-box {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .player-box label {
+    color: #33405a;
+    font-size: 13px;
+    font-weight: 900;
+  }
+
+  .player-box input {
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--ink);
+  }
+
   .start {
     width: 100%;
     min-height: 52px;
@@ -413,6 +435,60 @@
     font-size: 26px;
   }
 
+  .records {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+
+  .records h2 {
+    margin: 0 0 8px;
+    font-size: 16px;
+  }
+
+  .record-list {
+    display: grid;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .record-list li {
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    gap: 8px;
+    align-items: center;
+    min-height: 34px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    background: #f7f9fd;
+    border: 1px solid #e4e9f2;
+    font-size: 13px;
+  }
+
+  .record-list b {
+    color: var(--gold);
+  }
+
+  .record-list span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .record-list small {
+    color: var(--muted);
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .record-empty {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
   .result {
     position: fixed;
     inset: 0;
@@ -428,6 +504,8 @@
   }
 
   .result-card {
+    position: relative;
+    overflow: hidden;
     width: min(420px, 100%);
     padding: 24px;
     border-radius: 8px;
@@ -446,6 +524,40 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin: 16px 0;
+  }
+
+  .record-message {
+    min-height: 24px;
+    margin: 10px 0 0;
+    color: var(--teal);
+    font-weight: 900;
+  }
+
+  .result-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .confetti {
+    position: absolute;
+    top: -12px;
+    width: 8px;
+    height: 16px;
+    border-radius: 3px;
+    animation: fall 900ms ease-out forwards;
+    pointer-events: none;
+  }
+
+  @keyframes fall {
+    0% {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(340px) rotate(260deg);
+    }
   }
 
   .secondary {
@@ -546,8 +658,19 @@
           <p class="hint" id="photoHint">사진을 고르면 현재 난이도에 맞춰 나만의 카드가 만들어져요.</p>
         </div>
 
+        <div class="player-box">
+          <label for="playerName">플레이어 이름</label>
+          <input id="playerName" type="text" maxlength="12" autocomplete="nickname" placeholder="이름 입력">
+        </div>
+
         <button class="start" id="startBtn" type="button">게임 시작</button>
         <p class="hint">50장 모드는 카드가 작아져서 이름 위주로 보여요. 아이와 처음 할 때는 12장이나 16장을 추천해요.</p>
+
+        <section class="records" aria-label="기록표">
+          <h2>현재 난이도 기록</h2>
+          <ol class="record-list" id="recordList"></ol>
+          <p class="record-empty" id="recordEmpty">아직 기록이 없어요. 첫 판을 시작해보세요.</p>
+        </section>
       </aside>
 
       <section class="game-area" aria-label="카드 뒤집기 게임판">
@@ -578,8 +701,12 @@
         <div class="stat"><b id="finalTime">0:00</b><span>완료 시간</span></div>
         <div class="stat"><b id="finalMoves">0</b><span>뒤집은 횟수</span></div>
       </div>
+      <p class="record-message" id="recordMessage"></p>
       <button class="start" id="againBtn" type="button">다시 하기</button>
-      <button class="secondary" id="closeResultBtn" type="button">설정 바꾸기</button>
+      <div class="result-actions">
+        <button class="secondary" id="shareResultBtn" type="button">결과 복사</button>
+        <button class="secondary" id="closeResultBtn" type="button">설정 바꾸기</button>
+      </div>
     </div>
   </div>
 
@@ -736,6 +863,7 @@ let moves = 0;
 let timer = null;
 let startedAt = null;
 let locked = false;
+let latestResultText = "";
 
 const deckList = document.querySelector("#deckList");
 const difficultyList = document.querySelector("#difficultyList");
@@ -750,8 +878,15 @@ const photoHint = document.querySelector("#photoHint");
 const resultModal = document.querySelector("#resultModal");
 const finalTime = document.querySelector("#finalTime");
 const finalMoves = document.querySelector("#finalMoves");
+const playerNameInput = document.querySelector("#playerName");
+const recordList = document.querySelector("#recordList");
+const recordEmpty = document.querySelector("#recordEmpty");
+const recordMessage = document.querySelector("#recordMessage");
+const shareResultBtn = document.querySelector("#shareResultBtn");
 const againBtn = document.querySelector("#againBtn");
 const closeResultBtn = document.querySelector("#closeResultBtn");
+const STORAGE_KEY = "card-playground-records-v1";
+const PLAYER_KEY = "card-playground-player-v1";
 
 function renderDeckOptions() {
   const builtIn = Object.entries(decks).map(([key, deck]) => `
@@ -776,6 +911,7 @@ function renderDeckOptions() {
       selectedDeck = button.dataset.deck;
       renderDeckOptions();
       updateDeckStat();
+      renderRecords();
     });
   });
 }
@@ -793,6 +929,7 @@ function renderDifficultyOptions() {
       renderDifficultyOptions();
       matchStat.textContent = `0/${selectedCards / 2}`;
       board.dataset.size = selectedCards;
+      renderRecords();
     });
   });
 }
@@ -803,6 +940,46 @@ function getActiveDeckTitle() {
 
 function updateDeckStat() {
   deckStat.textContent = getActiveDeckTitle();
+}
+
+function recordKey() {
+  return `${selectedDeck}-${selectedCards}`;
+}
+
+function loadRecords() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+  } catch {
+    return {};
+  }
+}
+
+function saveRecords(records) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+}
+
+function renderRecords() {
+  const records = loadRecords()[recordKey()] || [];
+  recordList.innerHTML = records.map((record, index) => `
+    <li>
+      <b>${index + 1}</b>
+      <span>${escapeHtml(record.name)}</span>
+      <small>${formatTime(record.seconds)} · ${record.moves}회</small>
+    </li>
+  `).join("");
+  recordEmpty.style.display = records.length ? "none" : "block";
+}
+
+function savePlayerName() {
+  localStorage.setItem(PLAYER_KEY, playerNameInput.value.trim());
+}
+
+function loadPlayerName() {
+  playerNameInput.value = localStorage.getItem(PLAYER_KEY) || "";
+}
+
+function currentPlayerName() {
+  return playerNameInput.value.trim() || "이름 없는 고수";
 }
 
 function sampleItems() {
@@ -1053,6 +1230,14 @@ function escapeSvg(text) {
     .replaceAll('"', "&quot;");
 }
 
+function escapeHtml(text) {
+  return String(text)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
 function startGame() {
   const items = sampleItems();
   if (!items) return;
@@ -1127,6 +1312,7 @@ function checkMatch() {
   locked = true;
 
   if (cards[first.index].pairKey === cards[second.index].pairKey) {
+    playTone(520, 0.05);
     cards[first.index].matched = true;
     cards[second.index].matched = true;
     first.button.classList.add("matched");
@@ -1152,14 +1338,25 @@ function checkMatch() {
 
 function finishGame() {
   stopTimer();
-  finalTime.textContent = timeStat.textContent;
+  const seconds = elapsedSeconds();
+  const timeText = formatTime(seconds);
+  const saved = saveResult(seconds);
+  finalTime.textContent = timeText;
   finalMoves.textContent = moves;
+  recordMessage.textContent = saved.isBest ? "새 최고 기록!" : saved.rank <= 5 ? `${saved.rank}위 기록에 올라갔어요.` : "완주했어요. TOP 5까지 조금만 더!";
+  latestResultText = `${currentPlayerName()}의 카드 놀이터 기록: ${getActiveDeckTitle()} ${selectedCards}장 ${timeText}, ${moves}회!`;
+  renderRecords();
+  launchConfetti();
+  playWinSound();
   resultModal.classList.add("show");
 }
 
 function updateTimer() {
-  const seconds = Math.floor((Date.now() - startedAt) / 1000);
-  timeStat.textContent = formatTime(seconds);
+  timeStat.textContent = formatTime(elapsedSeconds());
+}
+
+function elapsedSeconds() {
+  return Math.max(0, Math.floor((Date.now() - startedAt) / 1000));
 }
 
 function formatTime(seconds) {
@@ -1171,6 +1368,82 @@ function formatTime(seconds) {
 function stopTimer() {
   if (timer) clearInterval(timer);
   timer = null;
+}
+
+function saveResult(seconds) {
+  const records = loadRecords();
+  const key = recordKey();
+  const nextRecord = {
+    name: currentPlayerName(),
+    seconds,
+    moves,
+    deck: getActiveDeckTitle(),
+    cards: selectedCards,
+    createdAt: new Date().toISOString()
+  };
+  const previous = records[key] || [];
+  const bestBefore = previous[0];
+  const sorted = [...previous, nextRecord]
+    .sort((a, b) => a.seconds - b.seconds || a.moves - b.moves || a.createdAt.localeCompare(b.createdAt));
+  const rank = sorted.findIndex(record => record.createdAt === nextRecord.createdAt) + 1;
+  records[key] = sorted.slice(0, 5);
+  saveRecords(records);
+  return {
+    rank,
+    isBest: !bestBefore || seconds < bestBefore.seconds || (seconds === bestBefore.seconds && moves < bestBefore.moves)
+  };
+}
+
+function launchConfetti() {
+  const colors = ["#ef6a5b", "#2b6fd6", "#168b8f", "#c98713", "#4f8f46"];
+  resultModal.querySelectorAll(".confetti").forEach(piece => piece.remove());
+  for (let i = 0; i < 26; i++) {
+    const piece = document.createElement("span");
+    piece.className = "confetti";
+    piece.style.left = `${8 + Math.random() * 84}%`;
+    piece.style.background = colors[i % colors.length];
+    piece.style.animationDelay = `${Math.random() * 240}ms`;
+    resultModal.querySelector(".result-card").appendChild(piece);
+  }
+}
+
+function playTone(frequency, duration) {
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    const context = new AudioContext();
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+    oscillator.frequency.value = frequency;
+    oscillator.type = "sine";
+    gain.gain.value = 0.04;
+    oscillator.connect(gain);
+    gain.connect(context.destination);
+    oscillator.start();
+    oscillator.stop(context.currentTime + duration);
+    oscillator.addEventListener("ended", () => context.close());
+  } catch {
+    // Sound is optional. Some mobile browsers block it, and the game still works.
+  }
+}
+
+function playWinSound() {
+  [660, 880, 1040].forEach((frequency, index) => {
+    setTimeout(() => playTone(frequency, 0.08), index * 95);
+  });
+}
+
+async function shareResult() {
+  const text = `${latestResultText}\nhttps://youbinseo-create.github.io/bini/`;
+  try {
+    await navigator.clipboard.writeText(text);
+    shareResultBtn.textContent = "복사 완료";
+    setTimeout(() => {
+      shareResultBtn.textContent = "결과 복사";
+    }, 1200);
+  } catch {
+    window.prompt("결과를 복사해 보내세요.", text);
+  }
 }
 
 function shuffle(list) {
@@ -1195,16 +1468,21 @@ photoInput.addEventListener("change", event => {
   selectedDeck = "custom";
   renderDeckOptions();
   updateDeckStat();
+  renderRecords();
 });
 
+playerNameInput.addEventListener("input", savePlayerName);
 startBtn.addEventListener("click", startGame);
 againBtn.addEventListener("click", startGame);
+shareResultBtn.addEventListener("click", shareResult);
 closeResultBtn.addEventListener("click", () => resultModal.classList.remove("show"));
 
+loadPlayerName();
 renderDeckOptions();
 renderDifficultyOptions();
 updateDeckStat();
 matchStat.textContent = `0/${selectedCards / 2}`;
+renderRecords();
 </script>
 </body>
 </html>
