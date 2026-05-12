@@ -586,7 +586,8 @@
     }
 
     .oracle,
-    .action-note {
+    .action-note,
+    .premium-preview {
       border: 1px solid var(--line);
       border-radius: 8px;
       background: rgba(248, 239, 225, 0.08);
@@ -594,18 +595,36 @@
     }
 
     .oracle h3,
-    .action-note h3 {
+    .action-note h3,
+    .premium-preview h3 {
       margin: 0 0 8px;
       color: var(--gold);
       font-size: 15px;
     }
 
     .oracle p,
-    .action-note p {
+    .action-note p,
+    .premium-preview p {
       margin: 0;
       color: #e4d4c0;
       line-height: 1.75;
       word-break: keep-all;
+    }
+
+    .premium-preview {
+      grid-column: 1 / -1;
+      background:
+        linear-gradient(135deg, rgba(212, 173, 90, 0.13), transparent 45%),
+        rgba(248, 239, 225, 0.075);
+    }
+
+    .premium-preview p + p {
+      margin-top: 8px;
+    }
+
+    .premium-preview strong {
+      color: var(--gold);
+      margin-right: 6px;
     }
 
     .journal-panel {
@@ -1412,6 +1431,12 @@
           <h3>${closing.title}</h3>
           <p>${closing.text}</p>
         </section>
+        <section class="premium-preview">
+          <h3>심화 리포트 미리보기</h3>
+          <p><strong>그림자</strong> ${escapeHtml((finalCard.shadow || []).slice(0, 2).join(" · ") || "아직 준비 중")}</p>
+          <p><strong>저널 질문</strong> ${escapeHtml(finalCard.journalPrompt || reading.prompt)}</p>
+          <p><strong>상담 포인트</strong> ${escapeHtml(finalCard.premiumNote || "저장한 기록이 쌓이면 더 깊게 읽을 수 있습니다.")}</p>
+        </section>
       `;
     }
 
@@ -1565,6 +1590,7 @@
         <section class="action-note"><h3>카드가 비추는 것</h3><p>${escapeHtml(entry.reflection)}</p></section>
         <section class="oracle"><h3>돌아볼 질문</h3><p>${escapeHtml(entry.prompt)}</p></section>
         <section class="action-note"><h3>${escapeHtml(entry.guidanceTitle)}</h3><p>${escapeHtml(entry.guidance)}</p></section>
+        <section class="premium-preview"><h3>심화 리포트 미리보기</h3><p><strong>그림자</strong> ${escapeHtml((drawn[drawn.length - 1].shadow || []).slice(0, 2).join(" · ") || "아직 준비 중")}</p><p><strong>저널 질문</strong> ${escapeHtml(drawn[drawn.length - 1].journalPrompt || entry.prompt)}</p><p><strong>상담 포인트</strong> ${escapeHtml(drawn[drawn.length - 1].premiumNote || "저장한 기록이 쌓이면 더 깊게 읽을 수 있습니다.")}</p></section>
       `;
       readingMemo.value = entry.memo || "";
       saveStatus.textContent = "저장된 리딩을 열었습니다.";
