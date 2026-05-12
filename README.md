@@ -1,21 +1,21 @@
-# 오늘의 결 카드
+# bini
 
-질문을 품고 카드를 뽑는 자기성찰용 오라클 카드 웹앱입니다.
+GitHub Pages 배포용 저장소입니다.
 
-이 앱은 미래를 단정하는 점술 서비스가 아니라, 지금의 마음과 태도를 다른 각도에서 돌아보게 하는 도구로 설계했습니다.
+## 공개 주소
 
-## 구성
+- 카드 뒤집기 게임: `https://youbinseo-create.github.io/bini/`
+- 오늘의 결 카드: `https://youbinseo-create.github.io/bini/tarot/`
+
+## 폴더 구조
 
 ```text
-index.html
-cards-data.js
-cards-data.json
-assets/cards/*.jpg
+index.html                    # 카드 뒤집기 게임
+assets/cards/...              # 카드 뒤집기 게임 이미지
+tarot/index.html              # 오늘의 결 카드 앱
+tarot/cards-data.js           # 타로 카드 데이터
+tarot/assets/cards/*.jpg      # 타로 카드 이미지
 ```
 
-현재 카드 데이터는 78장이고, 이미지가 정확히 매칭된 28장만 저해상도 JPG로 연결했습니다.
-이미지가 없는 카드는 앱 안의 기본 카드 디자인으로 표시됩니다.
-
-## 배포
-
-GitHub Pages에서 저장소 루트 기준으로 바로 배포됩니다.
+루트 `index.html`은 기존 카드 뒤집기 게임을 유지합니다.
+타로 앱은 `/tarot/` 하위 경로에서만 동작하도록 분리했습니다.
