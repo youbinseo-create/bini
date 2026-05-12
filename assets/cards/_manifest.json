@@ -1,0 +1,254 @@
+﻿[
+    {
+        "id":  "00",
+        "label":  "Hyecho / Journey",
+        "source":  "8 (2).png",
+        "output":  "assets/cards/00.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  125294
+    },
+    {
+        "id":  "03",
+        "label":  "Sinsa Imdang / Texture",
+        "source":  "5.png",
+        "output":  "assets/cards/03.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  130169
+    },
+    {
+        "id":  "05",
+        "label":  "Toegye Yi Hwang / Learning",
+        "source":  "5 (2).png",
+        "output":  "assets/cards/05.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  165272
+    },
+    {
+        "id":  "06",
+        "label":  "Chunhyang / Devotion",
+        "source":  "0 (3).png",
+        "output":  "assets/cards/06.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  140441
+    },
+    {
+        "id":  "07",
+        "label":  "Yi Sun-sin / Standard",
+        "source":  "7.png",
+        "output":  "assets/cards/07.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  137402
+    },
+    {
+        "id":  "09",
+        "label":  "Kim Jeong-ho / Inquiry",
+        "source":  "9.png",
+        "output":  "assets/cards/09.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  129514
+    },
+    {
+        "id":  "10",
+        "label":  "Jeong Do-jeon / Design",
+        "source":  "10.png",
+        "output":  "assets/cards/10.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  134072
+    },
+    {
+        "id":  "11",
+        "label":  "Jeong Yak-yong / Check",
+        "source":  "11.png",
+        "output":  "assets/cards/11.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  108696
+    },
+    {
+        "id":  "14",
+        "label":  "Heo Jun / Healing",
+        "source":  "14.png",
+        "output":  "assets/cards/14.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  120169
+    },
+    {
+        "id":  "16",
+        "label":  "Jo Gwang-jo / Reform",
+        "source":  "16.png",
+        "output":  "assets/cards/16.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  117219
+    },
+    {
+        "id":  "18",
+        "label":  "Hwang Jini / Resonance",
+        "source":  "18.png",
+        "output":  "assets/cards/18.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  137555
+    },
+    {
+        "id":  "21",
+        "label":  "Sejong / Creation",
+        "source":  "21.png",
+        "output":  "assets/cards/21.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  142396
+    },
+    {
+        "id":  "22",
+        "label":  "Jumong / Frontier",
+        "source":  "0 (2).png",
+        "output":  "assets/cards/22.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  126227
+    },
+    {
+        "id":  "23",
+        "label":  "Onjo / Ground",
+        "source":  "2 (2).png",
+        "output":  "assets/cards/23.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  130349
+    },
+    {
+        "id":  "24",
+        "label":  "Jang Bogo / Trade",
+        "source":  "24.png",
+        "output":  "assets/cards/24.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  132781
+    },
+    {
+        "id":  "25",
+        "label":  "Kim Yushin / Alliance",
+        "source":  "25.png",
+        "output":  "assets/cards/25.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  128623
+    },
+    {
+        "id":  "26",
+        "label":  "Gyebaek / Honor",
+        "source":  "26.png",
+        "output":  "assets/cards/26.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  119287
+    },
+    {
+        "id":  "27",
+        "label":  "Gang Gam-chan / Victory",
+        "source":  "27.png",
+        "output":  "assets/cards/27.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  131823
+    },
+    {
+        "id":  "28",
+        "label":  "Eulji Mundeok / Defense",
+        "source":  "28.png",
+        "output":  "assets/cards/28.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  119006
+    },
+    {
+        "id":  "29",
+        "label":  "Gwak Jae-u / Surprise",
+        "source":  "29.png",
+        "output":  "assets/cards/29.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  100986
+    },
+    {
+        "id":  "36",
+        "label":  "Uisang / Bond",
+        "source":  "0.png",
+        "output":  "assets/cards/36.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  117692
+    },
+    {
+        "id":  "40",
+        "label":  "Heo Nanseolheon / Loss",
+        "source":  "41.png",
+        "output":  "assets/cards/40.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  115623
+    },
+    {
+        "id":  "41",
+        "label":  "Kim Hong-do / Everyday",
+        "source":  "6 (3).png",
+        "output":  "assets/cards/41.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  139423
+    },
+    {
+        "id":  "48",
+        "label":  "Soseono / Embrace",
+        "source":  "49.png",
+        "output":  "assets/cards/48.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  115223
+    },
+    {
+        "id":  "57",
+        "label":  "Park Je-ga / Breakthrough",
+        "source":  "*09_09_43.png",
+        "output":  "assets/cards/57.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  108754
+    },
+    {
+        "id":  "59",
+        "label":  "Seong Sam-mun / Covenant",
+        "source":  "*01_03_21.png",
+        "output":  "assets/cards/59.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  100001
+    },
+    {
+        "id":  "64",
+        "label":  "Mun Ik-jeom / Seed",
+        "source":  "34.png",
+        "output":  "assets/cards/64.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  123453
+    },
+    {
+        "id":  "76",
+        "label":  "Kim Man-deok / Sharing",
+        "source":  "76.png",
+        "output":  "assets/cards/76.jpg",
+        "width":  490,
+        "height":  840,
+        "bytes":  144603
+    }
+]

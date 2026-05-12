@@ -1,0 +1,1328 @@
+window.TAROT_CARDS = [
+  {
+    "id": "00",
+    "arcana": "Major",
+    "tarot": "The Fool",
+    "rank": "0",
+    "suit": "큰 길",
+    "person": "혜초",
+    "main": "여정",
+    "subs": [
+      "첫발",
+      "낯섦",
+      "순례",
+      "방랑",
+      "개문"
+    ],
+    "advice": "새 길 앞에서 완벽한 확신보다 첫 걸음이 먼저라는 조언"
+  },
+  {
+    "id": "01",
+    "arcana": "Major",
+    "tarot": "The Magician",
+    "rank": "I",
+    "suit": "큰 길",
+    "person": "장영실",
+    "main": "발명",
+    "subs": [
+      "도구",
+      "손재",
+      "정밀",
+      "구현",
+      "응용"
+    ],
+    "advice": "손에 있는 재료를 실제 결과로 바꾸라는 조언"
+  },
+  {
+    "id": "02",
+    "arcana": "Major",
+    "tarot": "The High Priestess",
+    "rank": "II",
+    "suit": "큰 길",
+    "person": "선덕여왕",
+    "main": "통찰",
+    "subs": [
+      "혜안",
+      "예지",
+      "징조",
+      "고요",
+      "내공"
+    ],
+    "advice": "말보다 조짐을 읽고 조용히 판단하라는 조언"
+  },
+  {
+    "id": "03",
+    "arcana": "Major",
+    "tarot": "The Empress",
+    "rank": "III",
+    "suit": "큰 길",
+    "person": "신사임당",
+    "main": "결",
+    "subs": [
+      "창작",
+      "양육",
+      "섬세",
+      "품격",
+      "완성"
+    ],
+    "advice": "돌보고 길러낸 것이 작품과 삶의 결이 된다는 조언"
+  },
+  {
+    "id": "04",
+    "arcana": "Major",
+    "tarot": "The Emperor",
+    "rank": "IV",
+    "suit": "큰 길",
+    "person": "광개토대왕",
+    "main": "확장",
+    "subs": [
+      "영토",
+      "웅지",
+      "제왕",
+      "기틀",
+      "진출"
+    ],
+    "advice": "경계를 넓히되 중심 질서를 세우라는 조언"
+  },
+  {
+    "id": "05",
+    "arcana": "Major",
+    "tarot": "The Hierophant",
+    "rank": "V",
+    "suit": "큰 길",
+    "person": "퇴계 이황",
+    "main": "배움",
+    "subs": [
+      "학문",
+      "스승",
+      "수양",
+      "전통",
+      "근본"
+    ],
+    "advice": "기본으로 돌아가 오래 배울 스승과 체계를 찾으라는 조언"
+  },
+  {
+    "id": "06",
+    "arcana": "Major",
+    "tarot": "The Lovers",
+    "rank": "VI",
+    "suit": "큰 길",
+    "person": "춘향",
+    "main": "절개",
+    "subs": [
+      "사랑",
+      "약속",
+      "저항",
+      "신의",
+      "선택"
+    ],
+    "advice": "마음의 끌림을 책임 있는 선택으로 세우라는 조언"
+  },
+  {
+    "id": "07",
+    "arcana": "Major",
+    "tarot": "The Chariot",
+    "rank": "VII",
+    "suit": "큰 길",
+    "person": "이순신",
+    "main": "기준",
+    "subs": [
+      "중심",
+      "책임",
+      "방어",
+      "결단",
+      "장기전"
+    ],
+    "advice": "흔들리는 상황일수록 지켜야 할 하나를 붙들라는 조언"
+  },
+  {
+    "id": "08",
+    "arcana": "Major",
+    "tarot": "Strength",
+    "rank": "VIII",
+    "suit": "큰 길",
+    "person": "유관순",
+    "main": "신념",
+    "subs": [
+      "독립",
+      "목소리",
+      "용기",
+      "만세",
+      "불꽃"
+    ],
+    "advice": "부드러운 얼굴 뒤의 단단한 용기를 믿으라는 조언"
+  },
+  {
+    "id": "09",
+    "arcana": "Major",
+    "tarot": "The Hermit",
+    "rank": "IX",
+    "suit": "큰 길",
+    "person": "김정호",
+    "main": "탐구",
+    "subs": [
+      "지도",
+      "측량",
+      "시야",
+      "고독",
+      "축적"
+    ],
+    "advice": "서두르지 말고 혼자 확인한 지도로 길을 보라는 조언"
+  },
+  {
+    "id": "10",
+    "arcana": "Major",
+    "tarot": "Wheel of Fortune",
+    "rank": "X",
+    "suit": "큰 길",
+    "person": "정도전",
+    "main": "설계",
+    "subs": [
+      "제도",
+      "개국",
+      "질서",
+      "구상",
+      "판세"
+    ],
+    "advice": "운의 전환을 기다리기보다 판을 다시 설계하라는 조언"
+  },
+  {
+    "id": "11",
+    "arcana": "Major",
+    "tarot": "Justice",
+    "rank": "XI",
+    "suit": "큰 길",
+    "person": "정약용",
+    "main": "점검",
+    "subs": [
+      "실학",
+      "진단",
+      "개선",
+      "원칙",
+      "정비"
+    ],
+    "advice": "감정의 소음보다 사실과 원칙으로 고치라는 조언"
+  },
+  {
+    "id": "12",
+    "arcana": "Major",
+    "tarot": "The Hanged Man",
+    "rank": "XII",
+    "suit": "큰 길",
+    "person": "한용운",
+    "main": "저항",
+    "subs": [
+      "침묵",
+      "불복",
+      "의연",
+      "불굴",
+      "깨어남"
+    ],
+    "advice": "잠시 묶인 듯 보여도 내면의 자유를 잃지 말라는 조언"
+  },
+  {
+    "id": "13",
+    "arcana": "Major",
+    "tarot": "Death",
+    "rank": "XIII",
+    "suit": "큰 길",
+    "person": "전봉준",
+    "main": "봉기",
+    "subs": [
+      "민중",
+      "격변",
+      "개벽",
+      "들불",
+      "항쟁"
+    ],
+    "advice": "끝난 방식은 보내고 새 흐름을 받아들이라는 조언"
+  },
+  {
+    "id": "14",
+    "arcana": "Major",
+    "tarot": "Temperance",
+    "rank": "XIV",
+    "suit": "큰 길",
+    "person": "허준",
+    "main": "치유",
+    "subs": [
+      "회복",
+      "처방",
+      "균형",
+      "조절",
+      "생기"
+    ],
+    "advice": "극단보다 조절과 회복의 리듬을 찾으라는 조언"
+  },
+  {
+    "id": "15",
+    "arcana": "Major",
+    "tarot": "The Devil",
+    "rank": "XV",
+    "suit": "큰 길",
+    "person": "나혜석",
+    "main": "해방",
+    "subs": [
+      "자아",
+      "금기",
+      "시선",
+      "표현",
+      "탈출"
+    ],
+    "advice": "나를 묶는 시선과 집착을 알아차리라는 조언"
+  },
+  {
+    "id": "16",
+    "arcana": "Major",
+    "tarot": "The Tower",
+    "rank": "XVI",
+    "suit": "큰 길",
+    "person": "조광조",
+    "main": "개혁",
+    "subs": [
+      "쇄신",
+      "충돌",
+      "붕괴",
+      "정화",
+      "급진"
+    ],
+    "advice": "무너짐을 벌이 아니라 구조를 고칠 기회로 보라는 조언"
+  },
+  {
+    "id": "17",
+    "arcana": "Major",
+    "tarot": "The Star",
+    "rank": "XVII",
+    "suit": "큰 길",
+    "person": "윤동주",
+    "main": "별",
+    "subs": [
+      "희망",
+      "순수",
+      "성찰",
+      "어둠",
+      "빛결"
+    ],
+    "advice": "어둠을 지우려 하지 말고 그 안의 빛을 보존하라는 조언"
+  },
+  {
+    "id": "18",
+    "arcana": "Major",
+    "tarot": "The Moon",
+    "rank": "XVIII",
+    "suit": "큰 길",
+    "person": "황진이",
+    "main": "감응",
+    "subs": [
+      "매혹",
+      "파동",
+      "여운",
+      "미정",
+      "예술"
+    ],
+    "advice": "확답이 없을 때는 마음의 파동을 섬세히 읽으라는 조언"
+  },
+  {
+    "id": "19",
+    "arcana": "Major",
+    "tarot": "The Sun",
+    "rank": "XIX",
+    "suit": "큰 길",
+    "person": "방정환",
+    "main": "동심",
+    "subs": [
+      "어린이",
+      "놀이",
+      "기쁨",
+      "맑음",
+      "생명"
+    ],
+    "advice": "복잡함을 잠시 내려놓고 생명력의 단순함으로 돌아가라는 조언"
+  },
+  {
+    "id": "20",
+    "arcana": "Major",
+    "tarot": "Judgement",
+    "rank": "XX",
+    "suit": "큰 길",
+    "person": "김구",
+    "main": "부름",
+    "subs": [
+      "소명",
+      "대의",
+      "광복",
+      "방향",
+      "각성"
+    ],
+    "advice": "지금의 선택을 더 큰 부름과 연결하라는 조언"
+  },
+  {
+    "id": "21",
+    "arcana": "Major",
+    "tarot": "The World",
+    "rank": "XXI",
+    "suit": "큰 길",
+    "person": "세종대왕",
+    "main": "창제",
+    "subs": [
+      "언어",
+      "백성",
+      "소통",
+      "질문",
+      "대성"
+    ],
+    "advice": "흩어진 것을 모두가 이해할 언어로 완성하라는 조언"
+  },
+  {
+    "id": "22",
+    "arcana": "Minor",
+    "tarot": "Ace of Wands",
+    "rank": "Ace",
+    "suit": "행동의 불길",
+    "person": "주몽",
+    "main": "개척",
+    "subs": [
+      "건국",
+      "혈통",
+      "활력",
+      "운명",
+      "자립"
+    ],
+    "advice": "시작할 자격은 증명받는 것이 아니라 움직이며 생긴다"
+  },
+  {
+    "id": "23",
+    "arcana": "Minor",
+    "tarot": "Two of Wands",
+    "rank": "Two",
+    "suit": "행동의 불길",
+    "person": "온조",
+    "main": "터전",
+    "subs": [
+      "정착",
+      "기반",
+      "거처",
+      "가문",
+      "입지"
+    ],
+    "advice": "어디에 설 것인지 정하면 다음 판단이 쉬워진다"
+  },
+  {
+    "id": "24",
+    "arcana": "Minor",
+    "tarot": "Three of Wands",
+    "rank": "Three",
+    "suit": "행동의 불길",
+    "person": "장보고",
+    "main": "교역",
+    "subs": [
+      "바다",
+      "무역",
+      "항로",
+      "거래",
+      "세계"
+    ],
+    "advice": "내 울타리 밖의 흐름을 읽으면 기회가 열린다"
+  },
+  {
+    "id": "25",
+    "arcana": "Minor",
+    "tarot": "Four of Wands",
+    "rank": "Four",
+    "suit": "행동의 불길",
+    "person": "김유신",
+    "main": "연합",
+    "subs": [
+      "동맹",
+      "결속",
+      "협력",
+      "승리",
+      "조율"
+    ],
+    "advice": "혼자 이기는 싸움보다 함께 오래 가는 구조를 짜라"
+  },
+  {
+    "id": "26",
+    "arcana": "Minor",
+    "tarot": "Five of Wands",
+    "rank": "Five",
+    "suit": "행동의 불길",
+    "person": "계백",
+    "main": "명예",
+    "subs": [
+      "충의",
+      "최후",
+      "겨룸",
+      "자존",
+      "비장"
+    ],
+    "advice": "끝까지 붙들 가치와 내려놓을 자존심을 구분하라"
+  },
+  {
+    "id": "27",
+    "arcana": "Minor",
+    "tarot": "Six of Wands",
+    "rank": "Six",
+    "suit": "행동의 불길",
+    "person": "강감찬",
+    "main": "승전",
+    "subs": [
+      "준비",
+      "성과",
+      "인정",
+      "작전",
+      "반전"
+    ],
+    "advice": "승리는 운이 아니라 준비된 반전의 결과다"
+  },
+  {
+    "id": "28",
+    "arcana": "Minor",
+    "tarot": "Seven of Wands",
+    "rank": "Seven",
+    "suit": "행동의 불길",
+    "person": "을지문덕",
+    "main": "수성",
+    "subs": [
+      "기지",
+      "역습",
+      "방어선",
+      "함정",
+      "평정"
+    ],
+    "advice": "무조건 밀어붙이지 말고 유리한 자리에서 지켜라"
+  },
+  {
+    "id": "29",
+    "arcana": "Minor",
+    "tarot": "Eight of Wands",
+    "rank": "Eight",
+    "suit": "행동의 불길",
+    "person": "곽재우",
+    "main": "기습",
+    "subs": [
+      "속도",
+      "선점",
+      "돌발",
+      "의병",
+      "봉화"
+    ],
+    "advice": "작은 신호를 빠르게 행동으로 바꾸면 흐름을 선점한다"
+  },
+  {
+    "id": "30",
+    "arcana": "Minor",
+    "tarot": "Nine of Wands",
+    "rank": "Nine",
+    "suit": "행동의 불길",
+    "person": "홍범도",
+    "main": "버팀",
+    "subs": [
+      "인내",
+      "지속",
+      "체력",
+      "끈기",
+      "저력"
+    ],
+    "advice": "마지막 힘은 의욕보다 체력과 루틴에서 나온다"
+  },
+  {
+    "id": "31",
+    "arcana": "Minor",
+    "tarot": "Ten of Wands",
+    "rank": "Ten",
+    "suit": "행동의 불길",
+    "person": "김좌진",
+    "main": "책무",
+    "subs": [
+      "대업",
+      "부담",
+      "전선",
+      "지휘",
+      "강단"
+    ],
+    "advice": "무게를 혼자 들지 말고 임무와 책임을 나누어라"
+  },
+  {
+    "id": "32",
+    "arcana": "Minor",
+    "tarot": "Page of Wands",
+    "rank": "Page",
+    "suit": "행동의 불길",
+    "person": "윤봉길",
+    "main": "파장",
+    "subs": [
+      "신호탄",
+      "선언",
+      "충격",
+      "계기",
+      "집중"
+    ],
+    "advice": "작은 결심 하나가 주변의 흐름을 크게 흔든다"
+  },
+  {
+    "id": "33",
+    "arcana": "Minor",
+    "tarot": "Knight of Wands",
+    "rank": "Knight",
+    "suit": "행동의 불길",
+    "person": "안중근",
+    "main": "결행",
+    "subs": [
+      "양심",
+      "의거",
+      "선택",
+      "대가",
+      "의무"
+    ],
+    "advice": "행동하기 전 대가를 알고도 지킬 이유를 확인하라"
+  },
+  {
+    "id": "34",
+    "arcana": "Minor",
+    "tarot": "Queen of Wands",
+    "rank": "Queen",
+    "suit": "행동의 불길",
+    "person": "남자현",
+    "main": "의지",
+    "subs": [
+      "은근",
+      "심지",
+      "불씨",
+      "담대",
+      "노익장"
+    ],
+    "advice": "조용한 끈기가 가장 오래 타는 불이 된다"
+  },
+  {
+    "id": "35",
+    "arcana": "Minor",
+    "tarot": "King of Wands",
+    "rank": "King",
+    "suit": "행동의 불길",
+    "person": "안창호",
+    "main": "조직",
+    "subs": [
+      "인재",
+      "교육",
+      "운영",
+      "비전",
+      "훈련"
+    ],
+    "advice": "좋은 뜻은 사람을 키우는 구조가 될 때 지속된다"
+  },
+  {
+    "id": "36",
+    "arcana": "Minor",
+    "tarot": "Ace of Cups",
+    "rank": "Ace",
+    "suit": "마음의 물길",
+    "person": "의상",
+    "main": "인연",
+    "subs": [
+      "발원",
+      "호감",
+      "연결",
+      "순정",
+      "만남"
+    ],
+    "advice": "마음이 흐르는 쪽을 부드럽게 인정하라"
+  },
+  {
+    "id": "37",
+    "arcana": "Minor",
+    "tarot": "Two of Cups",
+    "rank": "Two",
+    "suit": "마음의 물길",
+    "person": "의천",
+    "main": "교류",
+    "subs": [
+      "대화",
+      "다리",
+      "조화",
+      "왕래",
+      "상생"
+    ],
+    "advice": "서로 다른 마음 사이에 다리를 놓아라"
+  },
+  {
+    "id": "38",
+    "arcana": "Minor",
+    "tarot": "Three of Cups",
+    "rank": "Three",
+    "suit": "마음의 물길",
+    "person": "김마리아",
+    "main": "연대",
+    "subs": [
+      "공동체",
+      "응원",
+      "친구",
+      "동지",
+      "참여"
+    ],
+    "advice": "혼자 견디는 마음을 함께 나누면 힘이 된다"
+  },
+  {
+    "id": "39",
+    "arcana": "Minor",
+    "tarot": "Four of Cups",
+    "rank": "Four",
+    "suit": "마음의 물길",
+    "person": "정몽주",
+    "main": "충절",
+    "subs": [
+      "일편",
+      "약속",
+      "지킴",
+      "불변",
+      "충심"
+    ],
+    "advice": "지켜야 할 약속과 나를 묶는 고집을 분별하라"
+  },
+  {
+    "id": "40",
+    "arcana": "Minor",
+    "tarot": "Five of Cups",
+    "rank": "Five",
+    "suit": "마음의 물길",
+    "person": "허난설헌",
+    "main": "상실",
+    "subs": [
+      "시문",
+      "결핍",
+      "슬픔",
+      "외로움",
+      "승화"
+    ],
+    "advice": "잃은 마음을 부정하지 말고 언어로 건져 올려라"
+  },
+  {
+    "id": "41",
+    "arcana": "Minor",
+    "tarot": "Six of Cups",
+    "rank": "Six",
+    "suit": "마음의 물길",
+    "person": "김홍도",
+    "main": "일상",
+    "subs": [
+      "풍속",
+      "서민",
+      "웃음",
+      "하루",
+      "장면"
+    ],
+    "advice": "답은 특별한 곳보다 오늘의 장면 속에 있다"
+  },
+  {
+    "id": "42",
+    "arcana": "Minor",
+    "tarot": "Seven of Cups",
+    "rank": "Seven",
+    "suit": "마음의 물길",
+    "person": "신윤복",
+    "main": "욕망",
+    "subs": [
+      "유혹",
+      "비밀",
+      "흔들림",
+      "선택지",
+      "애욕"
+    ],
+    "advice": "끌림을 죄로 보지 말고 선택의 책임을 보라"
+  },
+  {
+    "id": "43",
+    "arcana": "Minor",
+    "tarot": "Eight of Cups",
+    "rank": "Eight",
+    "suit": "마음의 물길",
+    "person": "윤심덕",
+    "main": "이탈",
+    "subs": [
+      "단절",
+      "자유",
+      "무대",
+      "노래",
+      "종막"
+    ],
+    "advice": "떠남이 도피인지 회복인지 마음의 이유를 확인하라"
+  },
+  {
+    "id": "44",
+    "arcana": "Minor",
+    "tarot": "Nine of Cups",
+    "rank": "Nine",
+    "suit": "마음의 물길",
+    "person": "이중섭",
+    "main": "그리움",
+    "subs": [
+      "가족",
+      "사랑",
+      "빈자리",
+      "편지",
+      "순애"
+    ],
+    "advice": "그리움은 약점이 아니라 무엇을 사랑하는지 알려준다"
+  },
+  {
+    "id": "45",
+    "arcana": "Minor",
+    "tarot": "Ten of Cups",
+    "rank": "Ten",
+    "suit": "마음의 물길",
+    "person": "이태석",
+    "main": "돌봄",
+    "subs": [
+      "헌신",
+      "봉사",
+      "구원",
+      "친절",
+      "살림"
+    ],
+    "advice": "관계의 완성은 큰 말보다 꾸준한 돌봄에 있다"
+  },
+  {
+    "id": "46",
+    "arcana": "Minor",
+    "tarot": "Page of Cups",
+    "rank": "Page",
+    "suit": "마음의 물길",
+    "person": "이매창",
+    "main": "서정",
+    "subs": [
+      "고백",
+      "떨림",
+      "진심",
+      "여림",
+      "향기"
+    ],
+    "advice": "아직 작은 마음이라도 정직하게 표현하라"
+  },
+  {
+    "id": "47",
+    "arcana": "Minor",
+    "tarot": "Knight of Cups",
+    "rank": "Knight",
+    "suit": "마음의 물길",
+    "person": "박수근",
+    "main": "온기",
+    "subs": [
+      "소박",
+      "인간미",
+      "존엄",
+      "다정",
+      "골목"
+    ],
+    "advice": "화려하지 않아도 오래 남는 다정함을 선택하라"
+  },
+  {
+    "id": "48",
+    "arcana": "Minor",
+    "tarot": "Queen of Cups",
+    "rank": "Queen",
+    "suit": "마음의 물길",
+    "person": "소서노",
+    "main": "품음",
+    "subs": [
+      "포용",
+      "그릇",
+      "동반",
+      "모성",
+      "성장"
+    ],
+    "advice": "품는 힘은 참는 힘이 아니라 키우는 힘이다"
+  },
+  {
+    "id": "49",
+    "arcana": "Minor",
+    "tarot": "King of Cups",
+    "rank": "King",
+    "suit": "마음의 물길",
+    "person": "백남준",
+    "main": "매체",
+    "subs": [
+      "감각",
+      "영상",
+      "전위",
+      "실험성",
+      "확산"
+    ],
+    "advice": "마음은 새로운 형식을 만나면 더 멀리 전해진다"
+  },
+  {
+    "id": "50",
+    "arcana": "Minor",
+    "tarot": "Ace of Swords",
+    "rank": "Ace",
+    "suit": "생각의 칼길",
+    "person": "정인지",
+    "main": "체계",
+    "subs": [
+      "문법",
+      "해석",
+      "정리",
+      "명료",
+      "규범"
+    ],
+    "advice": "흐릿한 생각을 문법과 기준으로 세워라"
+  },
+  {
+    "id": "51",
+    "arcana": "Minor",
+    "tarot": "Two of Swords",
+    "rank": "Two",
+    "suit": "생각의 칼길",
+    "person": "최치원",
+    "main": "경계",
+    "subs": [
+      "이중성",
+      "소속",
+      "유학",
+      "문명",
+      "귀향"
+    ],
+    "advice": "둘 중 하나만 고르기보다 경계 위의 시야를 보라"
+  },
+  {
+    "id": "52",
+    "arcana": "Minor",
+    "tarot": "Three of Swords",
+    "rank": "Three",
+    "suit": "생각의 칼길",
+    "person": "김시습",
+    "main": "직시",
+    "subs": [
+      "진실",
+      "비판",
+      "상처",
+      "은둔",
+      "통각"
+    ],
+    "advice": "아픈 진실도 바로 보아야 다음 길이 열린다"
+  },
+  {
+    "id": "53",
+    "arcana": "Minor",
+    "tarot": "Four of Swords",
+    "rank": "Four",
+    "suit": "생각의 칼길",
+    "person": "서경덕",
+    "main": "사유",
+    "subs": [
+      "철학",
+      "심연",
+      "멈춤",
+      "정돈",
+      "숙고"
+    ],
+    "advice": "생각이 엉켰다면 결론보다 멈춤이 먼저다"
+  },
+  {
+    "id": "54",
+    "arcana": "Minor",
+    "tarot": "Five of Swords",
+    "rank": "Five",
+    "suit": "생각의 칼길",
+    "person": "조식",
+    "main": "절개",
+    "subs": [
+      "엄격",
+      "단련",
+      "직언",
+      "거절",
+      "청렴"
+    ],
+    "advice": "모두에게 좋은 말보다 필요한 말을 선택하라"
+  },
+  {
+    "id": "55",
+    "arcana": "Minor",
+    "tarot": "Six of Swords",
+    "rank": "Six",
+    "suit": "생각의 칼길",
+    "person": "이이",
+    "main": "현실",
+    "subs": [
+      "실무",
+      "정책",
+      "적용",
+      "생활화",
+      "대비"
+    ],
+    "advice": "좋은 생각은 생활에 적용될 때 힘을 얻는다"
+  },
+  {
+    "id": "56",
+    "arcana": "Minor",
+    "tarot": "Seven of Swords",
+    "rank": "Seven",
+    "suit": "생각의 칼길",
+    "person": "박지원",
+    "main": "전환",
+    "subs": [
+      "역발상",
+      "풍자",
+      "변주",
+      "관점",
+      "해법"
+    ],
+    "advice": "정답이 막히면 질문의 방향부터 바꾸어라"
+  },
+  {
+    "id": "57",
+    "arcana": "Minor",
+    "tarot": "Eight of Swords",
+    "rank": "Eight",
+    "suit": "생각의 칼길",
+    "person": "박제가",
+    "main": "타파",
+    "subs": [
+      "북학",
+      "소비",
+      "시장",
+      "개방",
+      "실용성"
+    ],
+    "advice": "낡은 체면보다 실제로 통하는 방법을 보라"
+  },
+  {
+    "id": "58",
+    "arcana": "Minor",
+    "tarot": "Nine of Swords",
+    "rank": "Nine",
+    "suit": "생각의 칼길",
+    "person": "최익현",
+    "main": "고뇌",
+    "subs": [
+      "불안",
+      "고집",
+      "압박",
+      "외길",
+      "비운"
+    ],
+    "advice": "불안이 커질수록 생각의 출구를 작게라도 만들어라"
+  },
+  {
+    "id": "59",
+    "arcana": "Minor",
+    "tarot": "Ten of Swords",
+    "rank": "Ten",
+    "suit": "생각의 칼길",
+    "person": "성삼문",
+    "main": "언약",
+    "subs": [
+      "서약",
+      "지조",
+      "희생",
+      "문장",
+      "목숨"
+    ],
+    "advice": "끝까지 지킬 말인지 다시 확인하고 말하라"
+  },
+  {
+    "id": "60",
+    "arcana": "Minor",
+    "tarot": "Page of Swords",
+    "rank": "Page",
+    "suit": "생각의 칼길",
+    "person": "설총",
+    "main": "문해",
+    "subs": [
+      "입문",
+      "읽기",
+      "소리",
+      "문자",
+      "전달"
+    ],
+    "advice": "어려운 문제는 먼저 읽을 수 있는 언어로 바꾸어라"
+  },
+  {
+    "id": "61",
+    "arcana": "Minor",
+    "tarot": "Knight of Swords",
+    "rank": "Knight",
+    "suit": "생각의 칼길",
+    "person": "이준",
+    "main": "호소",
+    "subs": [
+      "외교",
+      "알림",
+      "폭로",
+      "국제",
+      "절규"
+    ],
+    "advice": "혼자 삼키지 말고 들을 수 있는 곳에 알려라"
+  },
+  {
+    "id": "62",
+    "arcana": "Minor",
+    "tarot": "Queen of Swords",
+    "rank": "Queen",
+    "suit": "생각의 칼길",
+    "person": "이태영",
+    "main": "권리",
+    "subs": [
+      "법률",
+      "인권",
+      "상담",
+      "차별",
+      "공정"
+    ],
+    "advice": "감정의 억울함을 권리의 언어로 정리하라"
+  },
+  {
+    "id": "63",
+    "arcana": "Minor",
+    "tarot": "King of Swords",
+    "rank": "King",
+    "suit": "생각의 칼길",
+    "person": "김병로",
+    "main": "법도",
+    "subs": [
+      "법치",
+      "판결",
+      "중심축",
+      "공직",
+      "엄정"
+    ],
+    "advice": "마지막 판단은 원칙과 책임을 함께 보아야 한다"
+  },
+  {
+    "id": "64",
+    "arcana": "Minor",
+    "tarot": "Ace of Pentacles",
+    "rank": "Ace",
+    "suit": "삶을 짓는 흙길",
+    "person": "문익점",
+    "main": "씨앗",
+    "subs": [
+      "목화",
+      "물질",
+      "생활혁명",
+      "가능성",
+      "수확"
+    ],
+    "advice": "작은 씨앗 하나가 생활 전체를 바꿀 수 있다"
+  },
+  {
+    "id": "65",
+    "arcana": "Minor",
+    "tarot": "Two of Pentacles",
+    "rank": "Two",
+    "suit": "삶을 짓는 흙길",
+    "person": "최무선",
+    "main": "실험",
+    "subs": [
+      "화약",
+      "시행",
+      "개발",
+      "위험",
+      "발사"
+    ],
+    "advice": "위험을 줄인 실험으로 가능성을 확인하라"
+  },
+  {
+    "id": "66",
+    "arcana": "Minor",
+    "tarot": "Three of Pentacles",
+    "rank": "Three",
+    "suit": "삶을 짓는 흙길",
+    "person": "이천",
+    "main": "협업",
+    "subs": [
+      "장인",
+      "제작",
+      "정밀도",
+      "완성품",
+      "합작"
+    ],
+    "advice": "좋은 결과는 각자의 기술이 맞물릴 때 나온다"
+  },
+  {
+    "id": "67",
+    "arcana": "Minor",
+    "tarot": "Four of Pentacles",
+    "rank": "Four",
+    "suit": "삶을 짓는 흙길",
+    "person": "최석정",
+    "main": "수리",
+    "subs": [
+      "계산",
+      "배열",
+      "구조",
+      "보존",
+      "도식"
+    ],
+    "advice": "감으로 붙들지 말고 숫자와 구조로 확인하라"
+  },
+  {
+    "id": "68",
+    "arcana": "Minor",
+    "tarot": "Five of Pentacles",
+    "rank": "Five",
+    "suit": "삶을 짓는 흙길",
+    "person": "정약전",
+    "main": "관찰",
+    "subs": [
+      "분류",
+      "자연",
+      "유배",
+      "어류",
+      "발견"
+    ],
+    "advice": "부족한 시기에도 관찰은 자산이 된다"
+  },
+  {
+    "id": "69",
+    "arcana": "Minor",
+    "tarot": "Six of Pentacles",
+    "rank": "Six",
+    "suit": "삶을 짓는 흙길",
+    "person": "김순애",
+    "main": "후원",
+    "subs": [
+      "지원",
+      "자원",
+      "연결망",
+      "후방",
+      "조력"
+    ],
+    "advice": "받고 주는 흐름을 만들면 혼자보다 오래 간다"
+  },
+  {
+    "id": "70",
+    "arcana": "Minor",
+    "tarot": "Seven of Pentacles",
+    "rank": "Seven",
+    "suit": "삶을 짓는 흙길",
+    "person": "유형원",
+    "main": "개량",
+    "subs": [
+      "토지",
+      "장기안",
+      "농사",
+      "제안",
+      "기다림"
+    ],
+    "advice": "느린 개선은 보이지 않아도 뿌리를 바꾼다"
+  },
+  {
+    "id": "71",
+    "arcana": "Minor",
+    "tarot": "Eight of Pentacles",
+    "rank": "Eight",
+    "suit": "삶을 짓는 흙길",
+    "person": "유득공",
+    "main": "기록",
+    "subs": [
+      "역사",
+      "메모",
+      "보관",
+      "반복",
+      "기억"
+    ],
+    "advice": "반복해서 남긴 기록이 실력을 만든다"
+  },
+  {
+    "id": "72",
+    "arcana": "Minor",
+    "tarot": "Nine of Pentacles",
+    "rank": "Nine",
+    "suit": "삶을 짓는 흙길",
+    "person": "강희안",
+    "main": "가꿈",
+    "subs": [
+      "정원",
+      "취향",
+      "공간",
+      "미감",
+      "여유"
+    ],
+    "advice": "내 공간과 취향을 가꾸는 일도 자립이다"
+  },
+  {
+    "id": "73",
+    "arcana": "Minor",
+    "tarot": "Ten of Pentacles",
+    "rank": "Ten",
+    "suit": "삶을 짓는 흙길",
+    "person": "유일한",
+    "main": "환원",
+    "subs": [
+      "기업",
+      "윤리",
+      "기부",
+      "순환",
+      "은퇴"
+    ],
+    "advice": "쌓은 것은 다시 흐를 때 가장 단단해진다"
+  },
+  {
+    "id": "74",
+    "arcana": "Minor",
+    "tarot": "Page of Pentacles",
+    "rank": "Page",
+    "suit": "삶을 짓는 흙길",
+    "person": "김용관",
+    "main": "과학",
+    "subs": [
+      "연구",
+      "지식",
+      "교육력",
+      "계몽",
+      "근대"
+    ],
+    "advice": "새 배움은 작게 시작해도 시대의 도구가 된다"
+  },
+  {
+    "id": "75",
+    "arcana": "Minor",
+    "tarot": "Knight of Pentacles",
+    "rank": "Knight",
+    "suit": "삶을 짓는 흙길",
+    "person": "정주영",
+    "main": "실행",
+    "subs": [
+      "현장",
+      "추진",
+      "건설",
+      "일감",
+      "돌파"
+    ],
+    "advice": "완벽한 계획보다 현장에서 고치는 실행이 필요하다"
+  },
+  {
+    "id": "76",
+    "arcana": "Minor",
+    "tarot": "Queen of Pentacles",
+    "rank": "Queen",
+    "suit": "삶을 짓는 흙길",
+    "person": "김만덕",
+    "main": "나눔",
+    "subs": [
+      "상업",
+      "구휼",
+      "복덕",
+      "흘림",
+      "풍요"
+    ],
+    "advice": "가진 것을 흘려보낼 때 복은 관계가 된다"
+  },
+  {
+    "id": "77",
+    "arcana": "Minor",
+    "tarot": "King of Pentacles",
+    "rank": "King",
+    "suit": "삶을 짓는 흙길",
+    "person": "장기려",
+    "main": "인술",
+    "subs": [
+      "의료",
+      "안전망",
+      "노후",
+      "보호",
+      "평생"
+    ],
+    "advice": "삶의 성공은 오래 지켜주는 안전망으로 완성된다"
+  }
+];
