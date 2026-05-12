@@ -608,6 +608,188 @@
       word-break: keep-all;
     }
 
+    .journal-panel {
+      display: grid;
+      gap: 12px;
+      margin-top: 4px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(248, 239, 225, 0.07);
+    }
+
+    .journal-panel h3 {
+      margin: 0 0 6px;
+      color: var(--gold);
+      font-size: 17px;
+    }
+
+    .journal-panel p {
+      margin: 0;
+      color: #d9c8b3;
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    .mood-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .mood-row button {
+      min-height: 36px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--paper);
+      background: rgba(248, 239, 225, 0.08);
+    }
+
+    .mood-row button[aria-pressed="true"] {
+      color: var(--ink);
+      background: var(--gold);
+      border-color: transparent;
+      font-weight: 900;
+    }
+
+    .journal-panel textarea {
+      width: 100%;
+      min-height: 112px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--paper);
+      background: rgba(248, 239, 225, 0.08);
+      padding: 12px;
+      outline: none;
+      line-height: 1.6;
+    }
+
+    .journal-panel textarea::placeholder {
+      color: rgba(248, 239, 225, 0.42);
+    }
+
+    .journal-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .journal-actions span {
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .archive {
+      display: none;
+      width: min(1160px, calc(100% - 32px));
+      margin: 0 auto 46px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .archive.is-open {
+      display: grid;
+      gap: 16px;
+    }
+
+    .archive-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .archive h2 {
+      margin: 0 0 6px;
+      font-size: 24px;
+    }
+
+    .archive p {
+      margin: 0;
+      color: #d9c8b3;
+      line-height: 1.6;
+    }
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .insight-card,
+    .history-item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(248, 239, 225, 0.07);
+    }
+
+    .insight-card {
+      padding: 14px;
+    }
+
+    .insight-card small,
+    .history-meta {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .insight-card strong {
+      display: block;
+      margin-top: 5px;
+      color: var(--paper);
+      font-size: 17px;
+      line-height: 1.35;
+    }
+
+    .history-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .history-item {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+    }
+
+    .history-item h3 {
+      margin: 0;
+      color: var(--paper);
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    .history-item p {
+      color: #e4d4c0;
+    }
+
+    .history-cards {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .history-cards span {
+      padding: 5px 8px;
+      border-radius: 999px;
+      color: var(--ink);
+      background: var(--paper);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .history-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
     .library {
       display: none;
       width: min(1160px, calc(100% - 32px));
@@ -734,6 +916,10 @@
       .reading-text {
         grid-template-columns: 1fr;
       }
+
+      .insight-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 680px) {
@@ -745,6 +931,7 @@
 
       .scene,
       .topbar,
+      .archive,
       .library {
         width: min(100% - 22px, 1160px);
       }
@@ -803,6 +990,7 @@
         <span>Reflective Oracle Cards</span>
       </div>
       <div class="nav-actions">
+        <button class="ghost-button" type="button" id="historyToggle">리딩 기록</button>
         <button class="ghost-button" type="button" id="libraryToggle">카드 목록</button>
         <button class="icon-button" type="button" id="restartTop" aria-label="처음으로" title="처음으로">↺</button>
       </div>
@@ -875,7 +1063,37 @@
         <div class="spread-result" id="spreadResult" style="--result-columns: 1;"></div>
 
         <div class="reading-text" id="readingText"></div>
+
+        <section class="journal-panel" aria-label="리딩 저장">
+          <div>
+            <h3>이 리딩 저장하기</h3>
+            <p>오늘의 감정과 메모를 같이 남기면, 나중에 반복되는 질문과 카드를 돌아볼 수 있습니다.</p>
+          </div>
+          <div class="mood-row" id="moodRow" aria-label="현재 감정">
+            <button type="button" data-mood="차분함" aria-pressed="true">차분함</button>
+            <button type="button" data-mood="흔들림" aria-pressed="false">흔들림</button>
+            <button type="button" data-mood="기대" aria-pressed="false">기대</button>
+            <button type="button" data-mood="답답함" aria-pressed="false">답답함</button>
+          </div>
+          <textarea id="readingMemo" rows="4" maxlength="420" placeholder="지금 떠오른 생각, 실제 상황, 나중에 다시 보고 싶은 느낌을 적어두세요."></textarea>
+          <div class="journal-actions">
+            <button class="solid-button" type="button" id="saveReadingButton">저장</button>
+            <span id="saveStatus" aria-live="polite"></span>
+          </div>
+        </section>
       </section>
+    </section>
+
+    <section class="archive" id="historyPanel">
+      <div class="archive-head">
+        <div>
+          <h2>리딩 기록</h2>
+          <p>저장한 질문, 카드, 감정 태그를 모아 반복되는 흐름을 봅니다.</p>
+        </div>
+        <button class="ghost-button" type="button" id="clearHistoryButton">기록 비우기</button>
+      </div>
+      <div class="insight-grid" id="historyInsights"></div>
+      <div class="history-list" id="historyList"></div>
     </section>
 
     <section class="library" id="library">
@@ -915,6 +1133,8 @@
     let deck = [];
     let selectedCount = 1;
     let chosenCards = [];
+    let currentReading = null;
+    const STORAGE_KEY = "reflective-oracle-readings";
 
     const introStage = document.querySelector("#introStage");
     const chooseStage = document.querySelector("#chooseStage");
@@ -924,6 +1144,7 @@
     const againButton = document.querySelector("#againButton");
     const newQuestionButton = document.querySelector("#newQuestionButton");
     const restartTop = document.querySelector("#restartTop");
+    const historyToggle = document.querySelector("#historyToggle");
     const topic = document.querySelector("#topic");
     const question = document.querySelector("#question");
     const spreadButtons = [...document.querySelectorAll(".spread-button")];
@@ -936,6 +1157,14 @@
     const resultQuestion = document.querySelector("#resultQuestion");
     const libraryToggle = document.querySelector("#libraryToggle");
     const library = document.querySelector("#library");
+    const historyPanel = document.querySelector("#historyPanel");
+    const historyList = document.querySelector("#historyList");
+    const historyInsights = document.querySelector("#historyInsights");
+    const clearHistoryButton = document.querySelector("#clearHistoryButton");
+    const moodRow = document.querySelector("#moodRow");
+    const readingMemo = document.querySelector("#readingMemo");
+    const saveReadingButton = document.querySelector("#saveReadingButton");
+    const saveStatus = document.querySelector("#saveStatus");
     const search = document.querySelector("#search");
     const suitFilter = document.querySelector("#suitFilter");
     const libraryGrid = document.querySelector("#libraryGrid");
@@ -963,6 +1192,63 @@
         [copy[index], copy[target]] = [copy[target], copy[index]];
       }
       return copy;
+    }
+
+    function loadReadings() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+        return Array.isArray(saved) ? saved : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function saveReadings(readings) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(readings.slice(0, 60)));
+    }
+
+    function selectedMood() {
+      return moodRow.querySelector('[aria-pressed="true"]')?.dataset.mood || "차분함";
+    }
+
+    function makeReadingRecord(drawn, reading) {
+      const topicText = topic.value;
+      const asked = question.value.trim();
+      const finalCard = drawn[drawn.length - 1];
+      return {
+        id: `reading-${Date.now()}`,
+        createdAt: new Date().toISOString(),
+        source: "self_reading",
+        funnelStage: "reflection",
+        topic: topicText,
+        question: asked,
+        spread: drawn.length,
+        cards: drawn.map((card) => ({
+          id: card.id,
+          person: card.person,
+          main: card.main,
+          suit: card.suit,
+          tarot: card.tarot
+        })),
+        answer: reading.answer,
+        reflection: reading.reflection,
+        prompt: reading.prompt,
+        guidanceTitle: reading.guidanceTitle,
+        guidance: reading.guidance,
+        mood: selectedMood(),
+        memo: ""
+      };
+    }
+
+    function readingSummary(drawn) {
+      const finalCard = drawn[drawn.length - 1];
+      return {
+        answer: finalCard.answer || finalCard.advice,
+        reflection: finalCard.reflection || finalCard.advice,
+        prompt: finalCard.question || makeReflectionQuestion(finalCard, topic.value),
+        guidanceTitle: finalCard.guidanceTitle || "오늘의 지침",
+        guidance: finalCard.guidance || finalCard.advice
+      };
     }
 
     function updateSpreadButtons() {
@@ -1007,12 +1293,16 @@
       const labels = positionLabels[drawn.length];
       const topicText = topic.value;
       const asked = question.value.trim();
+      const reading = readingSummary(drawn);
+      currentReading = makeReadingRecord(drawn, reading);
+      readingMemo.value = "";
+      saveStatus.textContent = "";
       spreadResult.style.setProperty("--result-columns", String(drawn.length));
       resultEyebrow.textContent = `${topicText} 성찰`;
       resultHeading.textContent = drawn.length === 1 ? "오늘의 결" : "세 장의 거울";
       resultQuestion.textContent = asked ? `“${asked}”` : "질문을 마음속에 품고 뽑은 카드입니다.";
       spreadResult.innerHTML = drawn.map((card, index) => cardTemplate(card, labels[index], index)).join("");
-      readingText.innerHTML = readingTemplate(drawn);
+      readingText.innerHTML = readingTemplate(drawn, reading);
       setStage("result");
     }
 
@@ -1041,23 +1331,23 @@
       `;
     }
 
-    function readingTemplate(drawn) {
+    function readingTemplate(drawn, reading) {
       const topicText = topic.value;
       const asked = question.value.trim();
       const finalCard = drawn[drawn.length - 1];
       const first = drawn[0];
       const center = drawn[Math.floor(drawn.length / 2)];
       const questionLine = asked ? `질문 “${escapeHtml(asked)}”에 대해 ` : "";
-      const answerLine = escapeHtml(finalCard.answer || finalCard.advice);
+      const answerLine = escapeHtml(reading.answer);
       const coreLine = drawn.length === 1
         ? `${questionLine}${answerLine}`
         : `${questionLine}${escapeHtml(first.person)} / ${escapeHtml(first.main)}에서 출발해 ${escapeHtml(center.person)} / ${escapeHtml(center.main)}을 지나, 마지막 카드인 ${escapeHtml(finalCard.person)} / ${escapeHtml(finalCard.main)}에 해석의 무게가 모입니다. ${answerLine}`;
       const topicGuide = topicGuides[topicText] || "지금의 질문은 정답을 맞히기보다, 내가 어떤 태도로 바라보고 있는지 살피게 합니다.";
-      const mirrorLine = `${escapeHtml(topicGuide)} ${escapeHtml(finalCard.reflection || finalCard.advice)}`;
-      const questionPrompt = escapeHtml(finalCard.question || makeReflectionQuestion(finalCard, topicText));
+      const mirrorLine = `${escapeHtml(topicGuide)} ${escapeHtml(reading.reflection)}`;
+      const questionPrompt = escapeHtml(reading.prompt);
       const closing = {
-        title: escapeHtml(finalCard.guidanceTitle || "오늘의 지침"),
-        text: escapeHtml(finalCard.guidance || finalCard.advice)
+        title: escapeHtml(reading.guidanceTitle),
+        text: escapeHtml(reading.guidance)
       };
       return `
         <section class="oracle">
@@ -1123,6 +1413,107 @@
       `).join("");
     }
 
+    function topCount(items, fallback) {
+      const counts = new Map();
+      for (const item of items.filter(Boolean)) {
+        counts.set(item, (counts.get(item) || 0) + 1);
+      }
+      const top = [...counts.entries()].sort((a, b) => b[1] - a[1])[0];
+      return top ? `${top[0]} · ${top[1]}회` : fallback;
+    }
+
+    function renderHistory() {
+      const readings = loadReadings();
+      if (!readings.length) {
+        historyInsights.innerHTML = "";
+        historyList.innerHTML = `<div class="empty">아직 저장한 리딩이 없습니다.<br>카드를 뽑은 뒤 감정과 메모를 남겨보세요.</div>`;
+        return;
+      }
+
+      const cardNames = readings.flatMap((entry) => entry.cards.map((card) => `${card.person}/${card.main}`));
+      const topics = readings.map((entry) => entry.topic);
+      const moods = readings.map((entry) => entry.mood);
+      historyInsights.innerHTML = `
+        <article class="insight-card">
+          <small>반복 카드</small>
+          <strong>${escapeHtml(topCount(cardNames, "아직 없음"))}</strong>
+        </article>
+        <article class="insight-card">
+          <small>자주 묻는 주제</small>
+          <strong>${escapeHtml(topCount(topics, "아직 없음"))}</strong>
+        </article>
+        <article class="insight-card">
+          <small>최근 감정 흐름</small>
+          <strong>${escapeHtml(topCount(moods, "아직 없음"))}</strong>
+        </article>
+      `;
+
+      historyList.innerHTML = readings.map((entry) => {
+        const date = new Date(entry.createdAt).toLocaleString("ko-KR", {
+          month: "short",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit"
+        });
+        const questionText = entry.question || "질문 없이 뽑은 리딩";
+        return `
+          <article class="history-item" data-id="${escapeHtml(entry.id)}">
+            <div class="history-meta">${escapeHtml(date)} · ${escapeHtml(entry.topic)} · ${escapeHtml(entry.mood || "감정 미기록")}</div>
+            <h3>${escapeHtml(questionText)}</h3>
+            <div class="history-cards">
+              ${entry.cards.map((card) => `<span>${escapeHtml(card.person)} / ${escapeHtml(card.main)}</span>`).join("")}
+            </div>
+            <p>${escapeHtml(entry.answer)}</p>
+            ${entry.memo ? `<p><strong>메모</strong> ${escapeHtml(entry.memo)}</p>` : ""}
+            <div class="history-actions">
+              <button class="ghost-button" type="button" data-action="load">다시 보기</button>
+              <button class="ghost-button" type="button" data-action="delete">삭제</button>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function saveCurrentReading() {
+      if (!currentReading) return;
+      const readings = loadReadings();
+      const record = {
+        ...currentReading,
+        id: `reading-${Date.now()}`,
+        savedAt: new Date().toISOString(),
+        mood: selectedMood(),
+        memo: readingMemo.value.trim()
+      };
+      saveReadings([record, ...readings]);
+      saveStatus.textContent = "저장되었습니다.";
+      renderHistory();
+    }
+
+    function openSavedReading(entry) {
+      const drawn = entry.cards
+        .map((savedCard) => cards.find((card) => card.id === savedCard.id))
+        .filter(Boolean);
+      if (!drawn.length) return;
+      topic.value = entry.topic;
+      question.value = entry.question || "";
+      chosenCards = drawn;
+      currentReading = entry;
+      spreadResult.style.setProperty("--result-columns", String(drawn.length));
+      resultEyebrow.textContent = `${entry.topic} 기록`;
+      resultHeading.textContent = drawn.length === 1 ? "저장한 리딩" : "저장한 세 장";
+      resultQuestion.textContent = entry.question ? `“${entry.question}”` : "질문 없이 저장한 리딩입니다.";
+      spreadResult.innerHTML = drawn.map((card, index) => cardTemplate(card, positionLabels[drawn.length][index], index)).join("");
+      readingText.innerHTML = `
+        <section class="oracle"><h3>핵심 문장</h3><p>${escapeHtml(entry.answer)}</p></section>
+        <section class="action-note"><h3>카드가 비추는 것</h3><p>${escapeHtml(entry.reflection)}</p></section>
+        <section class="oracle"><h3>돌아볼 질문</h3><p>${escapeHtml(entry.prompt)}</p></section>
+        <section class="action-note"><h3>${escapeHtml(entry.guidanceTitle)}</h3><p>${escapeHtml(entry.guidance)}</p></section>
+      `;
+      readingMemo.value = entry.memo || "";
+      saveStatus.textContent = "저장된 리딩을 열었습니다.";
+      setStage("result");
+    }
+
     function readFromLibrary(id) {
       const card = cards.find((item) => item.id === id);
       if (!card) return;
@@ -1143,6 +1534,7 @@
         }
         fillSuitFilter();
         renderLibrary();
+        renderHistory();
       } catch (error) {
         introStage.innerHTML = `<div class="empty">${escapeHtml(error.message)}<br>cards-data.js 파일이 같은 폴더에 있는지 확인해주세요.</div>`;
       }
@@ -1153,6 +1545,15 @@
     againButton.addEventListener("click", prepareDeck);
     newQuestionButton.addEventListener("click", () => setStage("intro"));
     restartTop.addEventListener("click", () => setStage("intro"));
+    saveReadingButton.addEventListener("click", saveCurrentReading);
+
+    moodRow.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-mood]");
+      if (!button) return;
+      for (const moodButton of moodRow.querySelectorAll("[data-mood]")) {
+        moodButton.setAttribute("aria-pressed", String(moodButton === button));
+      }
+    });
 
     spreadButtons.forEach((button) => {
       button.addEventListener("click", () => {
@@ -1171,11 +1572,39 @@
       libraryToggle.textContent = library.classList.contains("is-open") ? "목록 닫기" : "카드 목록";
     });
 
+    historyToggle.addEventListener("click", () => {
+      historyPanel.classList.toggle("is-open");
+      historyToggle.textContent = historyPanel.classList.contains("is-open") ? "기록 닫기" : "리딩 기록";
+      renderHistory();
+    });
+
+    clearHistoryButton.addEventListener("click", () => {
+      if (!loadReadings().length) return;
+      if (!window.confirm("저장한 리딩 기록을 모두 지울까요?")) return;
+      saveReadings([]);
+      renderHistory();
+    });
+
     search.addEventListener("input", renderLibrary);
     suitFilter.addEventListener("change", renderLibrary);
     libraryGrid.addEventListener("click", (event) => {
       const button = event.target.closest("[data-id]");
       if (button) readFromLibrary(button.dataset.id);
+    });
+
+    historyList.addEventListener("click", (event) => {
+      const actionButton = event.target.closest("[data-action]");
+      if (!actionButton) return;
+      const item = actionButton.closest("[data-id]");
+      const readings = loadReadings();
+      const entry = readings.find((reading) => reading.id === item.dataset.id);
+      if (!entry) return;
+      if (actionButton.dataset.action === "load") {
+        openSavedReading(entry);
+        return;
+      }
+      saveReadings(readings.filter((reading) => reading.id !== entry.id));
+      renderHistory();
     });
 
     boot();
