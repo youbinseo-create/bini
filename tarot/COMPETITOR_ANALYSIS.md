@@ -2,6 +2,13 @@
 
 업데이트 기준: 2026-05-12
 
+## 참고 출처
+
+- 포스텔러 공식 웹사이트: https://forceteller.com/
+- 점신 공식 웹사이트: https://www.jeomsin.co.kr/
+- 홍카페 공식 웹사이트: https://www.hongcafe.com/
+- Labyrinthos App Store: https://apps.apple.com/us/app/labyrinthos-tarot-reading/id1155180220
+
 ## 우리가 지켜야 할 포지션
 
 `오늘의 결 카드`는 단순 점괘 앱이 아니라, 한국 역사 인물 오라클을 기반으로 한 `리딩 저널 + 상담 전환` 서비스다.
