@@ -793,6 +793,45 @@
       line-height: 1.35;
     }
 
+    .conversion-strip {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .conversion-card {
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+      border: 1px solid rgba(212, 173, 90, 0.42);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(212, 173, 90, 0.13), transparent 44%),
+        rgba(248, 239, 225, 0.07);
+    }
+
+    .conversion-card h3 {
+      margin: 0;
+      color: var(--gold);
+      font-size: 17px;
+    }
+
+    .conversion-card p {
+      margin: 0;
+      color: #e4d4c0;
+      line-height: 1.65;
+      word-break: keep-all;
+    }
+
+    .conversion-card.is-locked {
+      border-color: var(--line);
+      background: rgba(248, 239, 225, 0.055);
+    }
+
+    .conversion-card.is-locked h3 {
+      color: #d9c8b3;
+    }
+
     .history-list {
       display: grid;
       gap: 10px;
@@ -964,6 +1003,10 @@
       }
 
       .insight-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .conversion-strip {
         grid-template-columns: 1fr;
       }
 
@@ -1152,6 +1195,7 @@
         <button class="ghost-button" type="button" id="clearHistoryButton">기록 비우기</button>
       </div>
       <div class="insight-grid" id="historyInsights"></div>
+      <div class="conversion-strip" id="conversionStrip"></div>
       <div class="history-list" id="historyList"></div>
     </section>
 
@@ -1219,6 +1263,7 @@
     const historyPanel = document.querySelector("#historyPanel");
     const historyList = document.querySelector("#historyList");
     const historyInsights = document.querySelector("#historyInsights");
+    const conversionStrip = document.querySelector("#conversionStrip");
     const clearHistoryButton = document.querySelector("#clearHistoryButton");
     const moodRow = document.querySelector("#moodRow");
     const readingMemo = document.querySelector("#readingMemo");
@@ -1497,6 +1542,7 @@
       const readings = loadReadings();
       if (!readings.length) {
         historyInsights.innerHTML = "";
+        conversionStrip.innerHTML = "";
         historyList.innerHTML = `<div class="empty">아직 저장한 리딩이 없습니다.<br>카드를 뽑은 뒤 감정과 메모를 남겨보세요.</div>`;
         return;
       }
@@ -1504,6 +1550,11 @@
       const cardNames = readings.flatMap((entry) => entry.cards.map((card) => `${card.person}/${card.main}`));
       const topics = readings.map((entry) => entry.topic);
       const moods = readings.map((entry) => entry.mood);
+      const topicCounts = new Map();
+      for (const item of topics.filter(Boolean)) topicCounts.set(item, (topicCounts.get(item) || 0) + 1);
+      const repeatedTopic = [...topicCounts.entries()].sort((a, b) => b[1] - a[1])[0];
+      const reportReady = readings.length >= 5;
+      const consultReady = Boolean(repeatedTopic && repeatedTopic[1] >= 3);
       historyInsights.innerHTML = `
         <article class="insight-card">
           <small>반복 카드</small>
@@ -1516,6 +1567,20 @@
         <article class="insight-card">
           <small>최근 감정 흐름</small>
           <strong>${escapeHtml(topCount(moods, "아직 없음"))}</strong>
+        </article>
+      `;
+      conversionStrip.innerHTML = `
+        <article class="conversion-card ${reportReady ? "" : "is-locked"}">
+          <h3>${reportReady ? "최근 흐름 리포트 준비됨" : "리포트까지 조금 남았어요"}</h3>
+          <p>${reportReady
+            ? `저장한 리딩 ${readings.length}개를 바탕으로 반복 카드, 주제, 감정 흐름을 한 장의 리포트로 정리할 수 있습니다.`
+            : `리딩을 ${Math.max(0, 5 - readings.length)}개 더 저장하면 최근 흐름 리포트를 만들 만큼의 기록이 쌓입니다.`}</p>
+        </article>
+        <article class="conversion-card ${consultReady ? "" : "is-locked"}">
+          <h3>${consultReady ? "상담으로 이어가기 좋은 주제" : "상담 연결 신호 관찰 중"}</h3>
+          <p>${consultReady
+            ? `${escapeHtml(repeatedTopic[0])} 주제가 ${repeatedTopic[1]}회 반복됐습니다. 혼자 결론 내리기보다 저장한 리딩을 바탕으로 더 깊게 정리할 수 있어요.`
+            : "같은 주제가 여러 번 반복되면, 상담이나 심화 리딩으로 이어갈 만한 신호로 표시됩니다."}</p>
         </article>
       `;
 
