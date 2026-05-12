@@ -1047,14 +1047,17 @@
       const finalCard = drawn[drawn.length - 1];
       const first = drawn[0];
       const center = drawn[Math.floor(drawn.length / 2)];
-      const questionLine = asked ? `질문 “${escapeHtml(asked)}” 앞에서 ` : "";
+      const questionLine = asked ? `질문 “${escapeHtml(asked)}”에 대해 ` : "";
       const coreLine = drawn.length === 1
-        ? `${questionLine}지금 가장 크게 비치는 결은 ${escapeHtml(first.person)}의 ${escapeHtml(first.main)}입니다.`
-        : `${questionLine}${escapeHtml(first.person)}의 ${escapeHtml(first.main)}에서 시작해, ${escapeHtml(center.person)}의 ${escapeHtml(center.main)}을 지나, ${escapeHtml(finalCard.person)}의 ${escapeHtml(finalCard.main)}으로 시선이 모입니다.`;
+        ? `${questionLine}이 카드는 ${escapeHtml(first.person)} / ${escapeHtml(first.main)}의 방식으로 지금의 태도를 비춥니다.`
+        : `${questionLine}${escapeHtml(first.person)} / ${escapeHtml(first.main)}에서 출발해 ${escapeHtml(center.person)} / ${escapeHtml(center.main)}을 지나, 마지막 카드인 ${escapeHtml(finalCard.person)} / ${escapeHtml(finalCard.main)}에 해석의 무게가 모입니다.`;
       const topicGuide = topicGuides[topicText] || "지금의 질문은 정답을 맞히기보다, 내가 어떤 태도로 바라보고 있는지 살피게 합니다.";
-      const mirrorLine = `${escapeHtml(topicGuide)} 이 카드는 상황을 단정하지 않고, 지금 내가 취할 수 있는 태도를 먼저 보게 합니다.`;
-      const questionPrompt = makeReflectionQuestion(finalCard, topicText);
-      const actionPrompt = makeActionPrompt(finalCard);
+      const mirrorLine = `${escapeHtml(topicGuide)} ${escapeHtml(finalCard.reflection || finalCard.advice)}`;
+      const questionPrompt = escapeHtml(finalCard.question || makeReflectionQuestion(finalCard, topicText));
+      const closing = {
+        title: escapeHtml(finalCard.guidanceTitle || "오늘의 지침"),
+        text: escapeHtml(finalCard.guidance || finalCard.advice)
+      };
       return `
         <section class="oracle">
           <h3>핵심 문장</h3>
@@ -1069,8 +1072,8 @@
           <p>${questionPrompt}</p>
         </section>
         <section class="action-note">
-          <h3>오늘의 작은 행동</h3>
-          <p>${actionPrompt}</p>
+          <h3>${closing.title}</h3>
+          <p>${closing.text}</p>
         </section>
       `;
     }
@@ -1090,12 +1093,6 @@
         "오래된 고민": `이 고민을 ${main}의 관점에서 보면, 내가 계속 같은 자리로 돌아오는 이유는 무엇일까?`
       };
       return topicQuestions[topicText] || `나는 지금 ${main}을(를) 어떤 방식으로 받아들이고 있을까?`;
-    }
-
-    function makeActionPrompt(card) {
-      const main = escapeHtml(card.main);
-      const advice = escapeHtml(card.advice);
-      return `${advice}. 오늘은 ${main}을(를) 큰 결심으로 증명하려 하지 말고, 10분 안에 끝낼 수 있는 작은 행동 하나로 남겨보세요.`;
     }
 
     function fillSuitFilter() {
