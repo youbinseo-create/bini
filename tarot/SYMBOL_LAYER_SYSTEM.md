@@ -539,6 +539,33 @@ S4의 장점은 유지하고, 오른쪽 아래 인장 안의 글자 느낌을 �
 Right-side background must use only geometric shell shards, stars, circles, moon jar, blank books, and observatory instrument. No floating fragments arranged like language, no vertical clusters, no calligraphic shard shapes.
 ```
 
+## S6 검증 결과
+
+생성 파일:
+
+```text
+tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-changje-s6.png
+```
+
+반영 목표:
+
+```text
+S5의 인물과 하단 문장은 유지하고, 오른쪽 배경을 글자처럼 보이지 않는 기하학 자개/별자리로 정리한다.
+```
+
+잘 된 점:
+
+- 오른쪽 배경이 글자 조각보다 별자리, 원형 자개, 기하학 조각, 관측기구로 읽힌다.
+- 중앙 인물의 매력과 신뢰감이 유지됐다.
+- 좌하/우하 메달리온이 해석용 상징으로 안정적으로 보인다.
+- 창제 카드의 현재 기준 후보로 가장 좋다.
+
+다음 단계:
+
+```text
+S6 구조를 기준으로 다른 카드 3장(설계, 인연, 직언)에 확장한다.
+```
+
 ## 현재 판단
 
 이 구조는 선현 덱을 한 단계 올릴 수 있다.
