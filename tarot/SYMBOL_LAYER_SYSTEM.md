@@ -508,6 +508,37 @@ tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-changje-s4.png
 Lower-right emblem must not contain seals with writing-like marks. Use a plain blank seal, seed, sprouting leaf, crimson knot, and mother-of-pearl dots only. No engraved marks, no stamp characters, no square glyphs.
 ```
 
+## S5 검증 결과
+
+생성 파일:
+
+```text
+tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-changje-s5.png
+```
+
+반영 목표:
+
+```text
+S4의 장점은 유지하고, 오른쪽 아래 인장 안의 글자 느낌을 제거한다.
+```
+
+잘 된 점:
+
+- 중앙 인물 매력이 유지됐다.
+- 왼쪽 아래 타로 도구 메달리온은 해석 상징으로 잘 읽힌다.
+- 오른쪽 아래는 붉은 매듭, 씨앗, 잎, 무문양 타원으로 바뀌어 글자 인장 느낌이 줄었다.
+- 하단 양쪽 상징이 카드의 리딩 구조를 잡아준다.
+
+남은 문제:
+
+- 오른쪽 배경 자개 조각 일부가 여전히 글자 조각처럼 보일 수 있다.
+
+다음 프롬프트 수정:
+
+```text
+Right-side background must use only geometric shell shards, stars, circles, moon jar, blank books, and observatory instrument. No floating fragments arranged like language, no vertical clusters, no calligraphic shard shapes.
+```
+
 ## 현재 판단
 
 이 구조는 선현 덱을 한 단계 올릴 수 있다.

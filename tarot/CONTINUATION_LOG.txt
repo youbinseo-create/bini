@@ -743,6 +743,34 @@ C:\Users\youbi\Desktop\ai수업\bini-pages-work\tarot\SYMBOL_LAYER_SYSTEM.md
 - S5 생성 시 오른쪽 아래에서 seal/glyph/engraving을 금지한다.
 - 하단 좌우 메달리온 구조는 유지한다.
 
+[2026-05-14] 창제 S5 생성: 오른쪽 아래 인장 문자감 제거
+
+사용자 요청:
+S4에서 다음 작업 진행.
+
+작업:
+
+- 창제 S5 생성
+  C:\Users\youbi\Desktop\ai수업\bini-pages-work\tarot\assets\concepts\seonhyeon-najeon-style\symbol-layer-changje-s5.png
+
+반영:
+
+- S4의 잘생긴 중앙 인물 유지
+- 좌하 타로 도구 메달리온 유지
+- 우하 실천/매듭 메달리온에서 글자 인장 느낌 제거
+- 우하를 붉은 매듭, 씨앗, 잎, 무문양 타원 중심으로 변경
+
+판단:
+
+- 현재 창제 카드 샘플 중 가장 완성도가 높다.
+- 양쪽 아래 상징이 해석용 문장처럼 잘 읽힌다.
+- 남은 문제는 오른쪽 배경 자개 조각 일부가 글자 조각처럼 보일 수 있다는 점이다.
+
+다음 작업:
+
+- S6에서는 오른쪽 배경을 완전 기하학적 자개 조각, 별, 원, 달항아리, 글자 없는 책, 관측기구로만 제한한다.
+- floating fragments arranged like language를 금지한다.
+
 커밋:
 
 - 아직 커밋 전일 수 있다. 다음 작업자는 git status 확인 필요.
