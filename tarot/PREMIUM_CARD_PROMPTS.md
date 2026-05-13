@@ -236,3 +236,35 @@ Three premium Korean oracle card back designs displayed side by side, vertical c
 ```text
 Premium Tumblbug reward mockup for a luxury Korean reflective oracle card deck, bright and elegant. Pearl-ivory hard deck box with pale jade lacquer sides, brushed gold foil border, mother-of-pearl blossom inlay, no readable text. Beside it: a stack of thick ivory oracle cards with gold foil edges, two visible card backs, and a small printed guidebook opened to blank sample pages with delicate decorative frames but no text. Soft spring morning light, clean ivory hanji background, peach blossom reflections, refined museum boutique collectible, tactile real product, bright positive mood, high-end packaging photography, no Korean characters, no English letters, no numbers, no logo, no fake writing.
 ```
+
+## ALT-A 현대 미니멀 자개 오라클 프롬프트
+
+목표: 현재의 화사한 궁중 화보풍과 완전히 다른, 현대적이고 미니멀한 프리미엄 덱 후보를 비교한다.
+
+```text
+Alternative tarot/oracle deck style concept A: modern minimalist Korean mother-of-pearl oracle deck, premium editorial art, not fantasy illustration. Three vertical oracle cards standing on a clean warm white gallery plinth, lots of negative space, pearl ivory background, subtle mother-of-pearl inlay, thin brushed gold lines, pale jade and soft coral accents. Illustrations are symbolic and minimal: red thread knot as a clean abstract line, two porcelain cups glowing beside a tea stain, a simple mask shadow silhouette. No ornate borders, no heavy flowers, no palace, no character beauty portrait. Sophisticated design object, museum shop collectible, calm positive mood, bright and refined, premium product design. No readable text, no Korean characters, no English letters, no numbers, no logo, no fake writing.
+```
+
+## ALT-B 민화 팝 오라클 프롬프트
+
+목표: 밝고 대중적인 텀블벅 감성의 민화/팝 일러스트 덱 후보를 비교한다.
+
+```text
+Alternative tarot/oracle deck style concept B: bright Korean folk art pop oracle deck, cheerful collectible, colorful but premium. Three vertical oracle cards displayed like a playful art poster, inspired by minhwa, bojagi color blocking, folk painting flowers, moon jars, red thread, magpies, clouds, and porcelain cups. Bold flat shapes, clean graphic silhouettes, warm ivory paper texture, coral, jade, sky blue, persimmon red, clear gold accents. Positive and charming, not childish, not dark, not generic fantasy. The cards should feel like modern Korean folk art goods that people want to collect on Tumblbug. Include a simple bright deck box blurred behind. No readable text, no Korean characters, no English letters, no numbers, no logo, no fake writing.
+```
+
+## ALT-B2 진짜 민화 구조 오라클 프롬프트
+
+목표: 민화의 소재를 장식으로 얹는 것이 아니라, 호작도/책거리/화조도/십장생/오방색의 구조를 사용해 완전히 다른 카드덱 후보를 만든다.
+
+```text
+Alternative oracle deck style B2: radically Korean minhwa-structured oracle cards, not fantasy, not western tarot, not cute generic folk art. Three vertical cards displayed as a bold contemporary minhwa art poster. Use flat composition, playful distortion, strong outlines, symbolic objects, obangsaek color harmony, auspicious folk painting energy, bright hopeful mood.
+
+Card 1, red thread knot: a minhwa-style red thread norigae transformed into a bold symbolic knot, surrounded by magpies, peony blossoms, small butterflies, and abstract cloud motifs. Flat ivory paper, persimmon red, jade green, sky blue, warm yellow, black ink outlines, clear gold accents.
+
+Card 2, recovery cups: chaekgeori-inspired still life with white porcelain cups, tea stain, folded blank paper, books, brush, inkstone, moon jar, and peach blossom branch arranged in impossible flattened perspective. Three fallen cups and two upright cups are clear. Meaning: what remains after loss.
+
+Card 3, true self and mask: hojakdo-inspired humorous tiger shadow and dignified magpie watching a pale mask and a calm human silhouette, playful but wise, not scary. Symbolizes seeing through social masks and authority.
+
+The whole image should feel like modern Korean folk art reinvented for a premium oracle deck on Tumblbug: joyful, lucky, witty, symbolic, collectible, unique, adult and refined, not childish. Include a simple bojagi-pattern deck box behind the cards. No readable text, no Korean characters, no English letters, no numbers, no logo, no fake writing.
+```

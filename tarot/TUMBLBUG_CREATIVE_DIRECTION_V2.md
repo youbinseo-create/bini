@@ -1,4 +1,4 @@
-# Tumblbug Creative Direction V2
+﻿# Tumblbug Creative Direction V2
 
 조사일: 2026-05-12
 
@@ -194,7 +194,7 @@ fake gemstone shine
 
 ## V2 생성 결과 검증
 
-생성 파일: `tarot/assets/concepts/tumblbug-hero-product-v2.png`
+생성 파일: `tarot/assets/concepts/existing-card-style/tumblbug-hero-product-v2.png`
 
 판정:
 
@@ -264,7 +264,7 @@ V2/V3는 “완제품 세트”로는 좋아졌지만, 카드 일러스트 자�
 
 ## V4 생성 결과 검증
 
-생성 파일: `tarot/assets/concepts/tumblbug-hero-illustration-v4.png`
+생성 파일: `tarot/assets/concepts/existing-card-style/tumblbug-hero-illustration-v4.png`
 
 판정:
 
@@ -330,7 +330,7 @@ V5 방향:
 
 ## V5-V8 생성 결과 검증
 
-최종 후보: `tarot/assets/concepts/tumblbug-hero-visualart-v8.png`
+최종 후보: `tarot/assets/concepts/existing-card-style/tumblbug-hero-visualart-v8.png`
 
 ### 왜 V8인가
 
@@ -361,7 +361,7 @@ V8의 장점:
 
 ## 2026-05-13 V8 재검증
 
-검증 대상: `tarot/assets/concepts/tumblbug-hero-visualart-v8.png`
+검증 대상: `tarot/assets/concepts/existing-card-style/tumblbug-hero-visualart-v8.png`
 
 검증 기준:
 
@@ -441,3 +441,4 @@ V8은 `첫 컷`으로 쓸 만하다. 하지만 V8 하나만으로 펀딩 상세�
 - https://tumblbug.com/shadoworacle
 - https://tumblbug.com/light_dreamscape
 - https://tumblbug.com/insightoracle
+

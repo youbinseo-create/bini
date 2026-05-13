@@ -1,4 +1,4 @@
-# Tumblbug Storyboard Draft
+﻿# Tumblbug Storyboard Draft
 
 작성일: 2026-05-13
 
@@ -285,7 +285,7 @@ V8은 첫 컷으로 적합하다. 다만 V8 하나만으로는 구성 증거가 
 파일:
 
 ```text
-tarot/assets/concepts/tumblbug-card-red-thread-v9.png
+tarot/assets/concepts/existing-card-style/tumblbug-card-red-thread-v9.png
 ```
 
 용도:
@@ -305,7 +305,7 @@ tarot/assets/concepts/tumblbug-card-red-thread-v9.png
 파일:
 
 ```text
-tarot/assets/concepts/tumblbug-card-backs-v10.png
+tarot/assets/concepts/existing-card-style/tumblbug-card-backs-v10.png
 ```
 
 용도:
@@ -325,7 +325,7 @@ tarot/assets/concepts/tumblbug-card-backs-v10.png
 파일:
 
 ```text
-tarot/assets/concepts/tumblbug-reward-mockup-v11.png
+tarot/assets/concepts/existing-card-style/tumblbug-reward-mockup-v11.png
 ```
 
 용도:
@@ -339,3 +339,4 @@ tarot/assets/concepts/tumblbug-reward-mockup-v11.png
 - 펀딩 설득용으로 반드시 필요한 이미지.
 - V8이 감정 훅이라면, V11은 실제 받을 물건의 증거.
 - 최종 버전에서는 선택한 카드 뒷면 디자인과 통일해서 다시 생성해야 함.
+
