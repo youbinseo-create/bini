@@ -30,6 +30,12 @@ tarot/assets/concepts/najeon-card-style/
 
 나전칠기/자개를 카드 뒷면, 박스, 패키지, 리워드 가격감으로 발전시키는 컨셉 이미지 보관소다. 흑칠, 패각 조각, 금속선, 국화당초문, 자개 점 테두리 실험을 넣는다.
 
+```text
+tarot/assets/concepts/seonhyeon-najeon-style/
+```
+
+선현 인물 카드와 나전 오라클의 고급 물성을 결합하는 컨셉 이미지 보관소다. 인물 매력, 상담받고 싶은 신뢰감, 자개 오브젝트 감성을 함께 검증한다.
+
 ## 현재 대표 파일
 
 ```text
@@ -45,6 +51,9 @@ najeon-card-style/najeon-packaging-c2.png
 najeon-card-style/najeon-symbolic-c3.png
 najeon-card-style/najeon-tumblbug-hero-c4.png
 najeon-card-style/najeon-red-thread-closeup-c5.png
+najeon-card-style/najeon-symbol-system-c6.png
+seonhyeon-najeon-style/seonhyeon-najeon-hero-s1.png
+seonhyeon-najeon-style/seonhyeon-najeon-attractive-s2.png
 ```
 
 ## 운영 규칙
@@ -54,6 +63,7 @@ najeon-card-style/najeon-red-thread-closeup-c5.png
 - 기존 앱 카드 이미지는 `tarot/assets/cards`에서 이동하지 않는다.
 - 카드 앞면 세계관 실험은 `minhwa-card-style`에 넣는다.
 - 카드 뒷면/박스/패키지 실험은 `najeon-card-style`에 넣는다.
+- 선현 인물과 나전 물성의 결합 실험은 `seonhyeon-najeon-style`에 넣는다.
 - 기존 밝은 화보형 또는 텀블벅 상세페이지용 이전 컨셉은 `existing-card-style`에 넣는다.
 
 ## 현재 판단
