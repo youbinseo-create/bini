@@ -210,3 +210,29 @@ Supporting card right, true self and mask: elegant figure lowering a pale mask, 
 
 Overall mood: 화사한 하이패션 카드 화보, 소장욕구 폭발, bright positive luxury, Korean poetic symbolism, modern premium oracle deck, art print quality, not generic, emotionally uplifting. Avoid flat lay, product catalog, dark gloomy palette, clutter, too many flowers, too many jewels, generic K-fantasy beauty, idol face, anime face, game splash art, random palace, plastic gold, readable text, Korean characters, English letters, numbers, logos, fake writing.
 ```
+
+## V9 붉은 실 단독 카드 프롬프트
+
+목표: V8의 중앙 붉은 실 카드를 실제 대표 카드/포스터/상세페이지 확대컷으로 쓸 수 있게 단독 생성한다.
+
+```text
+Single premium Korean reflective oracle card artwork, vertical tarot card format, no surrounding product scene. Theme: red thread release, relationship pattern, attachment turning into freedom. Close-up of elegant natural hands gently untangling a vivid muted crimson norigae thread across luminous ivory silk. The red thread forms a strong graphic composition, a small gold-and-pearl flower charm catches warm morning light, subtle mother-of-pearl shimmer, pale jade reflections, brushed gold foil border, airy spring atmosphere, bright and positive, emotionally relieving, collectible art print quality.
+
+The card should feel like a high-fashion editorial illustration and a luxury oracle deck card at the same time. Korean poetic symbolism, refined craft, not romance cliché, not sadness, not dark. Strong silhouette from far away, beautiful hand details, premium thick ivory card border, no readable text, no Korean characters, no English letters, no numbers, no logo, no fake writing.
+```
+
+## V10 카드 뒷면 3종 프롬프트
+
+목표: 텀블벅에서 소장욕을 만드는 카드 뒷면 후보 3종을 만든다.
+
+```text
+Three premium Korean oracle card back designs displayed side by side, vertical card format, no readable text. Bright luxury collectible deck backs, pearl ivory card stock, pale jade, mother-of-pearl shimmer, warm brushed gold foil. Design 1: palace blossom lattice pattern, elegant and airy. Design 2: circular compass and Big Dipper motif, refined gold linework. Design 3: red thread knot and pearl flower charm motif, subtle and symbolic. Clean borders, print-ready feeling, sophisticated Korean craft, bright hopeful mood, not dark, not cluttered, no text, no letters, no numbers, no logo.
+```
+
+## V11 박스/해설서 목업 프롬프트
+
+목표: V8이 감정 훅이라면, V11은 후원자가 받을 실물 구성의 신뢰를 보여준다.
+
+```text
+Premium Tumblbug reward mockup for a luxury Korean reflective oracle card deck, bright and elegant. Pearl-ivory hard deck box with pale jade lacquer sides, brushed gold foil border, mother-of-pearl blossom inlay, no readable text. Beside it: a stack of thick ivory oracle cards with gold foil edges, two visible card backs, and a small printed guidebook opened to blank sample pages with delicate decorative frames but no text. Soft spring morning light, clean ivory hanji background, peach blossom reflections, refined museum boutique collectible, tactile real product, bright positive mood, high-end packaging photography, no Korean characters, no English letters, no numbers, no logo, no fake writing.
+```
