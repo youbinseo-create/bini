@@ -175,3 +175,29 @@ Style 3 민화 팝: 대중성/선물용 좋음, 프리미엄 깊이는 약할 �
 - 현대 텀블벅 후원자가 “이건 완전 다르다”고 느끼는가
 - 너무 아동용처럼 가볍지는 않은가
 
+## 최신 후보 판단
+
+2026-05-13 추가 생성 후 판단:
+
+```text
+민화 B5: tarot/assets/concepts/minhwa-card-style/minhwa-folding-screen-b5.png
+나전 C4: tarot/assets/concepts/najeon-card-style/najeon-tumblbug-hero-c4.png
+나전 C5: tarot/assets/concepts/najeon-card-style/najeon-red-thread-closeup-c5.png
+```
+
+현재 가장 강한 방향은 나전 C4/C5다.
+
+이유:
+
+- C4는 카드, 박스, 가이드북, 실물 리워드가 같이 보여 텀블벅 첫 제품 증거 컷으로 좋다.
+- C5는 단일 카드의 소장욕과 상징성이 가장 강하다.
+- 민화 B5는 B3/B4보다 고급 민화 느낌이 좋아졌지만, 아직 대표 상품으로 즉시 사고 싶게 만드는 힘은 나전보다 약하다.
+
+따라서 다음 제작 기준은 다음과 같다.
+
+```text
+대표 카드 단독컷 기준: najeon-red-thread-closeup-c5.png
+펀딩 첫 제품컷 기준: najeon-tumblbug-hero-c4.png
+보조/비교 스타일: minhwa-folding-screen-b5.png
+```
+

@@ -39,9 +39,12 @@ existing-card-style/tumblbug-reward-mockup-v11.png
 minhwa-card-style/style-alt-minhwa-pop-b.png
 minhwa-card-style/minhwa-structured-b3.png
 minhwa-card-style/minhwa-refined-b4.png
+minhwa-card-style/minhwa-folding-screen-b5.png
 najeon-card-style/style-alt-modern-minimal-a.png
 najeon-card-style/najeon-packaging-c2.png
 najeon-card-style/najeon-symbolic-c3.png
+najeon-card-style/najeon-tumblbug-hero-c4.png
+najeon-card-style/najeon-red-thread-closeup-c5.png
 ```
 
 ## 운영 규칙
@@ -55,7 +58,7 @@ najeon-card-style/najeon-symbolic-c3.png
 
 ## 현재 판단
 
-민화 B4는 B3보다 낫다. B3는 자료 요소가 많아 일러스트 설명처럼 보였고, B4는 이전 민화 팝 버전의 밝고 소장욕 있는 느낌을 어느 정도 회복했다.
+민화 B5는 B4보다 전통 회화감이 좋아졌지만, 메인 상품 축으로 쓰기에는 아직 나전 계열보다 약하다.
 
-나전 C3는 C2보다 낫다. C2는 공예 디테일은 늘었지만 상징과 아름다움이 약해졌고, C3는 초기 미니멀 자개 버전의 아름다움과 카드별 상징을 같이 살렸다.
+나전 C4/C5가 현재 가장 강하다. C4는 텀블벅 제품 히어로, C5는 대표 카드 단독컷으로 적합하다.
 
