@@ -476,6 +476,38 @@ tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-changje-s3.png
 Do not include any letter-like fragments, pseudo-calligraphy, fake characters, glyphs, text marks, or readable/unreadable writing. Replace all language symbols with abstract mother-of-pearl shards, star fragments, geometric shell inlay, blank scrolls, books without writing, and light particles.
 ```
 
+## S4 검증 결과
+
+생성 파일:
+
+```text
+tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-changje-s4.png
+```
+
+사용자 피드백:
+
+```text
+남자 아주 멋있다. 양쪽 아래 상징은 더 상징처럼 보이게 해.
+```
+
+반영 결과:
+
+- 중앙 인물의 매력은 유지됐다.
+- 왼쪽 아래 타로 도구 상징이 원형 문장처럼 더 명확해졌다.
+- 오른쪽 아래 실천/매듭 상징도 별도 문장처럼 읽힌다.
+- 카드 하단의 좌우 상징이 해석용 장치로 보이기 시작했다.
+
+남은 문제:
+
+- 오른쪽 아래 인장 안에 글자처럼 보이는 질감이 있다.
+- 최종판에서는 인장을 무문양 봉인, 씨앗, 자개 점, 금선 문양으로 바꾸는 것이 안전하다.
+
+다음 프롬프트 수정:
+
+```text
+Lower-right emblem must not contain seals with writing-like marks. Use a plain blank seal, seed, sprouting leaf, crimson knot, and mother-of-pearl dots only. No engraved marks, no stamp characters, no square glyphs.
+```
+
 ## 현재 판단
 
 이 구조는 선현 덱을 한 단계 올릴 수 있다.
