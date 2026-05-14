@@ -621,6 +621,61 @@ tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-jigeon-s1.png
 직언 S2에서는 검정 비중을 줄이고, 아이보리 한지, 자개 빛, 밝은 금선을 늘린다. 엄숙함은 유지하되 어둡게 만들지 않는다.
 ```
 
+## 확장 카드 2차 검증 결과
+
+생성 파일:
+
+```text
+tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-chiyu-s1.png
+tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-gyeoldan-s1.png
+tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-gwanchal-s1.png
+```
+
+### 치유 S1
+
+잘 된 점:
+
+- 부드럽고 밝은 힐링 톤이 좋다.
+- 약초, 그릇, 연꽃, 물의 상징이 명확하다.
+- 병원 느낌이 아니라 상담과 회복의 카드로 읽힌다.
+
+판단:
+
+```text
+후보 유지.
+```
+
+### 결단 S1
+
+잘 된 점:
+
+- 인물 매력과 방향성이 강하다.
+- 나침반, 배, 길, 성문 상징이 결단 카드로 잘 읽힌다.
+- 전투적이지 않고 선택/진로/용기 카드로 확장하기 좋다.
+
+판단:
+
+```text
+후보 유지.
+```
+
+### 관찰 S1
+
+잘 된 점:
+
+- 예술가/관찰자/상담자 느낌이 좋다.
+- 거울, 등불, 새, 붓 상징이 잘 맞는다.
+
+문제:
+
+- 전체 배경이 조금 어두운 편이다.
+
+다음 수정:
+
+```text
+관찰 S2에서는 아이보리 한지와 자개 후광을 더 키우고, 먹색/어두운 배경을 줄인다.
+```
+
 ## 현재 판단
 
 이 구조는 선현 덱을 한 단계 올릴 수 있다.
