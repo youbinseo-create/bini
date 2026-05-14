@@ -745,3 +745,25 @@ Prompt add-on for future generations:
 ```text
 Make this card visually distinct from the previous cards. Do not use the same face type, same front-facing pose, same scroll-holding gesture, or same young handsome scholar archetype. The person must be attractive and collectible, but with a unique age, silhouette, expression, camera angle, and body language.
 ```
+
+## 2026-05-14 Deck Format Lock
+
+User critique:
+
+```text
+덱의 포맷은 맞춰야하지 않겠니?
+```
+
+This critique is also correct. Character diversity should vary inside a fixed deck system. The current concept images vary too much in aspect ratio, border thickness, emblem size, and figure scale.
+
+Use `tarot/DECK_FORMAT_SPEC.md` as the format source of truth.
+
+Core rule:
+
+```text
+Different person, same deck frame.
+Different pose, same symbol positions.
+Different scene, same 2:3 card ratio.
+```
+
+Future images should be generated as strict `1024 x 1536` 2:3 vertical cards whenever possible. If the generator returns a near-card ratio instead, store it as a concept draft and later normalize it into the fixed deck template.
