@@ -141,3 +141,34 @@ Next production step:
 Create a locked deck template first, then regenerate or composite final cards into that template.
 ```
 
+## Format Lock S3 Result
+
+Created files:
+
+```text
+tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-jigeon-s3-format-lock.png
+tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-gwanchal-s3-format-lock.png
+tarot/assets/concepts/seonhyeon-najeon-style/format-lock-pair-s3.png
+```
+
+Validation:
+
+```text
+Jigeon S3: 1024 x 1536, ratio 0.667
+Gwanchal S3: 1024 x 1536, ratio 0.667
+```
+
+Judgment:
+
+```text
+This is the strongest deck-format direction so far.
+The cards now read as the same product line while preserving different character poses and moods.
+```
+
+Adjustment for the next batch:
+
+```text
+Reduce lower medallion visual weight by about 5-8%.
+Keep the blank bottom title zone.
+Keep the same border and corner symbol language.
+```

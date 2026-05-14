@@ -149,3 +149,34 @@ Rule for next expansion:
 ```text
 Do not generate the next card until its age, face type, pose, camera angle, gesture object, emotional tone, costume silhouette, and background action are different from the previous card.
 ```
+
+## 2026-05-14 Format Lock S3
+
+New assets:
+
+```text
+symbol-layer-jigeon-s3-format-lock.png
+symbol-layer-gwanchal-s3-format-lock.png
+format-lock-pair-s3.png
+```
+
+Result:
+
+- Both S3 format-lock cards were generated at `1024 x 1536`.
+- The two-card comparison sheet shows a much stronger deck identity than the earlier S1/S2 drafts.
+- Character diversity is preserved: `Jigeon` uses a mature palace-gate counselor; `Gwanchal` uses a side-profile artist-observer.
+- Shared deck structure is now visible: same bright najeon/gold border language, top corner symbols, lower-left tarot medallion, lower-right historical symbol medallion, and blank bottom title zone.
+
+Critique:
+
+- This is the current strongest production direction.
+- The bottom medallions are slightly heavy, especially in `Gwanchal S3`; future prompts should reduce lower medallion scale by about 5-8%.
+- The fixed deck frame is now working, but future cards must keep the same format while varying figure scale more deliberately.
+
+Next rule:
+
+```text
+Use S3 format-lock as the base direction.
+Keep 1024 x 1536, fixed frame, fixed medallion zones, and blank bottom zone.
+Reduce lower medallion weight slightly in the next batch.
+```
