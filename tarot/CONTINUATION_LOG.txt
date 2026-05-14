@@ -854,3 +854,47 @@ S6 진행.
 
 ============================================================
 끝.
+
+============================================================
+[2026-05-14] 인물/포즈 다양성 문제 수정
+
+사용자 피드백:
+
+남자들 생김새와 동작 포즈 같은것들이 너무 비슷해.
+기존에 만들었던 80장 카드는 훨씬 다채롭다.
+
+판단:
+
+- 피드백이 맞다.
+- 최근 나전/선현 확장 카드는 상징 구조와 물성은 좋아졌지만, 중앙 인물이 비슷한 젊은/중년 미남 상담가로 수렴했다.
+- 기존 사용자 카드들은 승려, 왕, 장수, 여성 문인, 노승, 책상 앞 집필, 팔 벌림, 지도 설계, 행진, 측면 응시 등 인물 타입과 동작 언어가 훨씬 다양하다.
+
+문서 업데이트:
+
+- tarot/SYMBOL_LAYER_SYSTEM.md
+  - Character and Pose Diversity Rule 추가.
+  - 카드마다 age band, face type, pose, camera, gesture object, emotional tone, costume silhouette, background action을 먼저 정하도록 규칙화.
+
+- tarot/assets/concepts/seonhyeon-najeon-style/README.md
+  - Diversity Correction 섹션 추가.
+  - 현재 반복 문제와 보정 샘플 평가 기록.
+
+새로 생성/저장한 보정 샘플:
+
+- tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-jigeon-s2-diversity.png
+- tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-gwanchal-s2-diversity.png
+
+보정 샘플 평가:
+
+- 직언 S2 다양성 버전:
+  - 늦은 40~50대 상담가, 궁궐 문 옆 측면 구도, 말하는 손동작이 생겨 S1보다 훨씬 덜 반복적이다.
+  - 오른쪽 아래 상징은 아직 장식성이 강해서 다음 버전에서 더 압축된 상징물로 정리 필요.
+
+- 관찰 S2 다양성 버전:
+  - 중성적이고 우아한 예술가/관찰자, 측면 앉은 자세, 거울/붓/물그릇 동작이 있어 기존 남성 카드들과 확실히 구분된다.
+  - 현재 다양성 보정 방향의 좋은 기준 샘플로 쓸 수 있다.
+
+다음 작업:
+
+- 다음 카드부터는 "잘생김"을 유지하되 같은 얼굴/같은 포즈/같은 두루마리/같은 정면 상담가 구도를 금지한다.
+- 기존 사용자 80장 카드의 다채로운 인물 타입을 기준으로, 카드마다 역할과 몸짓을 먼저 설계한 뒤 생성한다.

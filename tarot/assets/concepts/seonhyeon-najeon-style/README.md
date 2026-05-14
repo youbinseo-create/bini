@@ -116,3 +116,36 @@ S6의 인물 매력 + 하단 메달리온 구조 + 글자 없는 기하학 자�
 - letter-like fragments도 금지하고, 자개 조각/별빛/추상 문양으로 대체하기
 - 하단 양쪽 상징은 원형 메달리온/문장처럼 명확하게 만들기
 - 인장 안쪽에도 글자 느낌을 넣지 않기
+
+## 2026-05-14 Diversity Correction
+
+User critique:
+
+```text
+남자들 생김새와 동작 포즈 같은것들이 너무 비슷해.
+기존에 만들었던 사람들은 80장 카드가 다 다채롭다.
+```
+
+Judgment:
+
+- This is correct. The S6-based expansion improved material quality and symbol structure, but the central male figures started to repeat.
+- The repeated failure pattern is: attractive Korean man + similar robe + front/three-quarter bust + calm direct gaze + scroll/hand gesture.
+- The user's existing 80-card source deck is stronger in character diversity: monk, king, strategist, commander, woman writer, elder monk, different ages, different gestures, different story scenes.
+
+New assets made for correction:
+
+```text
+symbol-layer-jigeon-s2-diversity.png
+symbol-layer-gwanchal-s2-diversity.png
+```
+
+Self-review:
+
+- `symbol-layer-jigeon-s2-diversity.png`: better than S1 for diversity. Mature counselor, palace-gate side pose, raised speaking hand, brighter ivory palette. Still needs stronger symbolic compression in the lower-right emblem.
+- `symbol-layer-gwanchal-s2-diversity.png`: currently the stronger diversity correction. Side-profile seated artist-observer, mirror/brush/water-bowl action, lighter lavender/pearl mood, clearly different from the male counselor/king cards.
+
+Rule for next expansion:
+
+```text
+Do not generate the next card until its age, face type, pose, camera angle, gesture object, emotional tone, costume silhouette, and background action are different from the previous card.
+```

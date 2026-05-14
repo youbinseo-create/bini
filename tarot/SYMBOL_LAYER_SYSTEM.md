@@ -690,3 +690,58 @@ tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-gwanchal-s1.png
 ```
 
 이렇게 가면 단순히 잘생긴 인물 카드가 아니라, 실제로 리딩 가능한 프리미엄 한국 오라클 카드가 된다.
+
+## 2026-05-14 Character and Pose Diversity Rule
+
+User critique:
+
+```text
+남자들 생김새와 동작 포즈 같은것들이 너무 비슷해.
+내가 기존에 만들었던 사람들은 80장 카드가 다 다채롭거든!
+```
+
+This critique is correct. The current najeon/seonhyeon prompt over-fixated on "handsome Korean historical counselor figure", so several cards converged into the same young-to-middle-aged attractive man, similar robe, similar front-facing half-body pose, and similar hand/scroll gesture.
+
+New rule:
+
+```text
+Attractive does not mean same face.
+Collectible does not mean same pose.
+Every card must have a different body language, age band, role archetype, camera angle, and emotional temperature.
+```
+
+Before generating each card, assign these fields:
+
+```text
+1. Age band: youth / early 30s / late 40s / elder / monk / ruler / warrior / artist / healer
+2. Face type: sharp strategist / gentle healer / solemn king / weathered monk / elegant artist / bold commander / soft mediator
+3. Pose: open arms / raised counsel hand / seated writing / side-profile observation / walking forward / kneeling prayer / standing commander / hands folded / looking away / looking directly
+4. Camera: full body / waist-up / close editorial portrait / side profile / over-the-table / low angle / palace-gate three-quarter view
+5. Gesture object: brush / blank scroll / mirror / medicine bowl / compass / fan / lantern / seal / sword / flower / map
+6. Emotional tone: bright welcome / strategic intensity / quiet sorrow / healing calm / decisive courage / poetic longing / royal authority
+7. Costume silhouette: royal robe / scholar robe / monk robe / armor / artist hanbok / physician robe / travel cloak
+8. Background action: temple crowd / palace gate / desk study / garden pavilion / mountain road / workshop / ritual courtyard / water terrace
+```
+
+Do not repeat more than two fields from the previous generated card. If two cards both use a handsome male figure, then the pose, age, costume silhouette, gesture object, and camera angle must all change.
+
+Recommended early diversity map:
+
+```text
+창제: young royal-scholar, frontal seated writing, bright letters/stars, royal authority.
+설계: mature strategist, 3/4 profile, raised hand over map/blueprint, intense planning.
+인연: warm monk/mediator, open arms or two cups/thread, temple/lotus, welcoming.
+직언: late-40s counselor, palace-gate side angle, raised open palm, blank petition, honest tension.
+치유: gentle physician/healer, seated with medicine bowl and water, soft eyes, recovery.
+결단: commander-scholar, standing/walking forward, compass/flag/path, decisive movement.
+관찰: elegant artist-observer, seated side profile, mirror/brush/water bowl, quiet seeing.
+상실: poetic woman or androgynous scholar, downward gaze, moon/window, grief and memory.
+기준: armored commander, side profile, sword/flag, firm boundary.
+결집: elder monk, full body with followers, banner/bell, collective resolve.
+```
+
+Prompt add-on for future generations:
+
+```text
+Make this card visually distinct from the previous cards. Do not use the same face type, same front-facing pose, same scroll-holding gesture, or same young handsome scholar archetype. The person must be attractive and collectible, but with a unique age, silhouette, expression, camera angle, and body language.
+```
