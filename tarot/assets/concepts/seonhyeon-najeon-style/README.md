@@ -180,3 +180,38 @@ Use S3 format-lock as the base direction.
 Keep 1024 x 1536, fixed frame, fixed medallion zones, and blank bottom zone.
 Reduce lower medallion weight slightly in the next batch.
 ```
+
+## 2026-05-14 Format Lock Batch 2
+
+New assets:
+
+```text
+symbol-layer-seolgye-s3-format-lock.png
+symbol-layer-inyeon-s3-format-lock.png
+symbol-layer-chiyu-s3-format-lock.png
+symbol-layer-gyeoldan-s3-format-lock.png
+format-lock-batch2-s3.png
+```
+
+Dimension check:
+
+```text
+Seolgye S3: 1024 x 1536, pass
+Inyeon S3: 992 x 1586, format draft only
+Chiyu S3: 1024 x 1536, pass
+Gyeoldan S3: 992 x 1586, format draft only
+```
+
+Self-review:
+
+- `Seolgye S3`: strong. Strategic pose, city plan, table gesture, and deck frame work well.
+- `Inyeon S3`: visually warm and fundable, but the generated ratio drifted. Keep as a concept draft; regenerate or normalize before final deck use.
+- `Chiyu S3`: strong. The water-pouring action clearly communicates healing, and the bright palette is commercially usable.
+- `Gyeoldan S3`: good concept and pose, but ratio drifted. Keep as concept draft; final master needs strict 1024 x 1536.
+
+Important lesson:
+
+```text
+The prompt can improve format consistency, but it does not guarantee exact dimensions every time.
+Every generated card must be dimension-checked before being treated as a final deck master.
+```

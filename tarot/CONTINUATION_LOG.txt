@@ -976,3 +976,47 @@ Different scene, same 2:3 card ratio.
 
 - S3 포맷 잠금 방향을 기준으로 설계/인연/치유/결단 등 나머지 카드도 같은 포맷으로 확장한다.
 - 포맷은 고정하고 인물 타입과 포즈만 다르게 설계한다.
+
+============================================================
+[2026-05-14] S3 포맷 잠금 2차 배치 생성
+
+사용자 요청:
+
+오 굿. 계속 만들어.
+
+생성한 카드:
+
+- 설계 S3 포맷 잠금
+  tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-seolgye-s3-format-lock.png
+
+- 인연 S3 포맷 잠금
+  tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-inyeon-s3-format-lock.png
+
+- 치유 S3 포맷 잠금
+  tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-chiyu-s3-format-lock.png
+
+- 결단 S3 포맷 잠금
+  tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-gyeoldan-s3-format-lock.png
+
+- 4장 비교 시트
+  tarot/assets/concepts/seonhyeon-najeon-style/format-lock-batch2-s3.png
+
+치수 검증:
+
+- 설계 S3: 1024 x 1536, 통과.
+- 인연 S3: 992 x 1586, 컨셉 통과 / 최종 포맷 실패.
+- 치유 S3: 1024 x 1536, 통과.
+- 결단 S3: 992 x 1586, 컨셉 통과 / 최종 포맷 실패.
+
+평가:
+
+- 설계 S3는 전략가가 도면/도시 계획 위에 손을 올린 포즈라 카드 의미가 잘 보인다.
+- 인연 S3는 밝고 따뜻해서 좋지만, 기존 인연 카드와 비슷한 승려/중재자 방향이다. 포맷도 1024x1536이 아니라 최종 마스터로는 재작업 필요.
+- 치유 S3는 물을 따르는 행동이 명확하고, 밝은 약초/정원 분위기가 좋아 현재 배치 중 강하다.
+- 결단 S3는 문을 열고 나아가는 포즈가 좋다. 전투가 아니라 선택/진로/용기로 보여 방향은 맞지만, 포맷이 흔들려 재작업 필요.
+
+중요:
+
+- 생성 프롬프트가 포맷을 어느 정도 잡아주지만 정확한 치수는 보장하지 않는다.
+- 앞으로 모든 카드는 생성 후 반드시 치수 검증을 해야 한다.
+- 최종 덱 마스터는 1024 x 1536을 통과한 카드만 사용한다.

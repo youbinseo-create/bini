@@ -172,3 +172,31 @@ Reduce lower medallion visual weight by about 5-8%.
 Keep the blank bottom title zone.
 Keep the same border and corner symbol language.
 ```
+
+## Format Lock Batch 2 Result
+
+Created files:
+
+```text
+symbol-layer-seolgye-s3-format-lock.png
+symbol-layer-inyeon-s3-format-lock.png
+symbol-layer-chiyu-s3-format-lock.png
+symbol-layer-gyeoldan-s3-format-lock.png
+format-lock-batch2-s3.png
+```
+
+Validation:
+
+```text
+Seolgye S3: 1024 x 1536, pass
+Inyeon S3: 992 x 1586, concept only
+Chiyu S3: 1024 x 1536, pass
+Gyeoldan S3: 992 x 1586, concept only
+```
+
+Rule update:
+
+```text
+Do not mark a card as a final deck master until it passes exact dimension validation.
+Prompt format locking helps, but generated outputs can still drift.
+```
