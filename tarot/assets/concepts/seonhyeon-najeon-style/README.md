@@ -215,3 +215,56 @@ Important lesson:
 The prompt can improve format consistency, but it does not guarantee exact dimensions every time.
 Every generated card must be dimension-checked before being treated as a final deck master.
 ```
+
+## 2026-05-15 Attractive S4/S5 Review
+
+S4 attractive files:
+
+```text
+symbol-layer-seolgye-s4-attractive.png
+symbol-layer-inyeon-s4-attractive.png
+symbol-layer-chiyu-s4-attractive.png
+symbol-layer-gyeoldan-s4-attractive.png
+attractive-batch-s4.png
+```
+
+S4 result:
+
+```text
+Seolgye S4: face improved, format failed at 992 x 1586.
+Inyeon S4: warm and likeable, format failed at 992 x 1586.
+Chiyu S4: face improved, format passed at 1024 x 1536.
+Gyeoldan S4: strongest commercial image, format passed at 1024 x 1536.
+```
+
+Calculated S5 follow-up:
+
+```text
+symbol-layer-seolgye-s5-attractive-format.png
+symbol-layer-inyeon-s5-attractive-format.png
+current-pass-candidates-s5.png
+```
+
+S5 result:
+
+```text
+Seolgye S5: 1024 x 1536, pass. Stronger attractive strategist candidate.
+Inyeon S5: 1024 x 1536, pass. Red-thread/ring gesture makes the relationship theme more memorable.
+```
+
+Current pass candidate lineup:
+
+```text
+Jigeon S3
+Gwanchal S3
+Seolgye S5
+Inyeon S5
+Chiyu S4
+Gyeoldan S4
+```
+
+Next caution:
+
+```text
+The lineup now has many handsome male figures. To keep the 78-card deck diverse, the next production should introduce a poetic feminine/androgynous card and a stronger commander/boundary silhouette.
+```

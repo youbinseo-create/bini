@@ -1020,3 +1020,97 @@ Different scene, same 2:3 card ratio.
 - 생성 프롬프트가 포맷을 어느 정도 잡아주지만 정확한 치수는 보장하지 않는다.
 - 앞으로 모든 카드는 생성 후 반드시 치수 검증을 해야 한다.
 - 최종 덱 마스터는 1024 x 1536을 통과한 카드만 사용한다.
+
+============================================================
+[2026-05-15] S4 얼굴 매력 보정 및 검증 시작
+
+사용자 요청:
+
+생김새를 매력적으로 고쳐줘. 로그를 잘 작성해줘.
+
+작업:
+
+- 설계/인연/치유/결단 4장을 S4 attractive 버전으로 새로 생성.
+- 기존 이미지는 덮어쓰지 않고 별도 파일명으로 저장.
+
+새 파일:
+
+- tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-seolgye-s4-attractive.png
+- tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-inyeon-s4-attractive.png
+- tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-chiyu-s4-attractive.png
+- tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-gyeoldan-s4-attractive.png
+- tarot/assets/concepts/seonhyeon-najeon-style/attractive-batch-s4.png
+
+치수 검증:
+
+- 설계 S4: 992 x 1586, 포맷 실패.
+- 인연 S4: 992 x 1586, 포맷 실패.
+- 치유 S4: 1024 x 1536, 포맷 통과.
+- 결단 S4: 1024 x 1536, 포맷 통과.
+
+평가:
+
+- 결단 S4가 현재 배치에서 가장 상업성이 높다. 얼굴, 실루엣, 문을 여는 동작이 강하다.
+- 치유 S4도 강하다. 얼굴 매력과 물을 따르는 치유 동작이 모두 살아 있다.
+- 설계 S4는 얼굴은 좋아졌지만 포맷 실패, 분위기가 약간 어둡고 복잡하다.
+- 인연 S4는 따뜻하지만 너무 무난하다. 포맷도 실패.
+
+추가 문서:
+
+- tarot/APPEARANCE_VALIDATION.md 생성.
+- 점수 공식: 얼굴 매력 35 + 카드별 개성 25 + 포맷 통과 25 + 덱 통일감 15.
+
+다음 생산 결정:
+
+- 설계와 인연을 우선 재생산한다.
+- 결단 S4와 치유 S4는 현재 상위 후보로 보관한다.
+
+============================================================
+[2026-05-15] 계산 기반 추가 생산: 설계 S5 / 인연 S5
+
+사용자 요청:
+
+이제 만든 카드들 생김새 검증을 하고 추가로 계산 생산하자.
+
+검증 기준:
+
+- 얼굴 매력 35점
+- 카드별 개성 25점
+- 포맷 통과 25점
+- 덱 통일감 15점
+- 총 100점
+
+검증 결론:
+
+- 결단 S4와 치유 S4는 상위 후보.
+- 설계 S4와 인연 S4는 얼굴은 개선됐지만 992x1586으로 포맷 실패.
+- 따라서 추가 생산은 설계/인연 재생성이 우선.
+
+추가 생성:
+
+- tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-seolgye-s5-attractive-format.png
+- tarot/assets/concepts/seonhyeon-najeon-style/symbol-layer-inyeon-s5-attractive-format.png
+- tarot/assets/concepts/seonhyeon-najeon-style/current-pass-candidates-s5.png
+
+치수 검증:
+
+- 설계 S5: 1024 x 1536, 통과.
+- 인연 S5: 1024 x 1536, 통과.
+
+평가:
+
+- 설계 S5는 S4보다 화면이 덜 복잡하고, 얼굴 매력과 전략가 느낌이 동시에 살아 있다.
+- 인연 S5는 붉은 실과 고리를 직접 들고 있어 관계 카드의 제스처가 훨씬 기억에 남는다.
+- 현재 통과 후보 6장:
+  - 직언 S3
+  - 관찰 S3
+  - 설계 S5
+  - 인연 S5
+  - 치유 S4
+  - 결단 S4
+
+중요한 경고:
+
+- 현재 후보군은 잘생긴 남성/중성 인물이 많아지고 있다.
+- 다음 생산은 같은 미남 선비 계열을 더 늘리면 안 된다.
+- 다음 배치는 상실처럼 시적인 여성/중성 인물 1장, 기준처럼 강한 장수/경계 실루엣 1장으로 가는 것이 다양성 균형에 좋다.
