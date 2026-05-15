@@ -268,3 +268,82 @@ Next caution:
 ```text
 The lineup now has many handsome male figures. To keep the 78-card deck diverse, the next production should introduce a poetic feminine/androgynous card and a stronger commander/boundary silhouette.
 ```
+
+## 2026-05-15 Diversity Balance S1
+
+New assets:
+
+```text
+symbol-layer-sangsil-s1-diversity-balance.png
+symbol-layer-gijun-s1-diversity-balance.png
+current-pass-candidates-s6.png
+```
+
+Dimension check:
+
+```text
+Sangsil S1: 1024 x 1536, pass
+Gijun S1: 1024 x 1536, pass
+```
+
+Self-review:
+
+- `Sangsil S1`: very strong. It adds poetic feminine emotion, a memorable face, and a clear release/memory gesture. This helps the deck feel less male-heavy.
+- `Gijun S1`: strong silhouette and useful boundary/protection meaning. It adds commander energy without going too dark or warlike.
+- Risk: `Gijun S1` has small architectural marks that may read as writing, so it needs close inspection before final master use.
+
+Current pass candidate lineup:
+
+```text
+Jigeon S3
+Gwanchal S3
+Seolgye S5
+Inyeon S5
+Chiyu S4
+Gyeoldan S4
+Sangsil S1
+Gijun S1
+```
+
+Next production direction:
+
+```text
+Add brighter youth/playful energy and non-romantic female authority.
+Avoid producing another ivory/celadon handsome male scholar immediately.
+```
+
+## 2026-05-15 Next Balance And Korean Costume Pass
+
+New assets:
+
+```text
+symbol-layer-hwanhee-s1-next-balance.png
+symbol-layer-suho-s1-next-balance.png
+current-pass-candidates-s7.png
+symbol-layer-jangin-s1-korean-costume.png
+symbol-layer-sijak-s1-korean-costume.png
+current-pass-candidates-s8.png
+```
+
+Dimension check:
+
+```text
+Hwanhee S1: 1024 x 1536, pass
+Suho S1: 1024 x 1536, pass
+Jangin S1: 1024 x 1536, pass
+Sijak S1: 1024 x 1536, pass
+```
+
+Self-review:
+
+- `Hwanhee S1`: strong joyful movement and bright youthful energy. Useful for Tumblbug thumbnails.
+- `Suho S1`: good non-romantic female authority. Risk: upper architecture may read as writing-like/Chinese-style ornament.
+- `Jangin S1`: strongest Korean costume/material identity so far. Najeonchilgi, hanok, bojagi, moon jar, and practical clothing pull the deck toward a more distinct Korean product identity.
+- `Sijak S1`: bright and Korean in setting, but lower clothing silhouette needs review to avoid fantasy drift.
+
+Important direction:
+
+```text
+The deck should use Korean craft specificity as an anchor.
+Jangin S1 is a useful reference for future Korean-style prompts.
+```

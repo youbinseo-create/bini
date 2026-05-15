@@ -200,3 +200,45 @@ Rule update:
 Do not mark a card as a final deck master until it passes exact dimension validation.
 Prompt format locking helps, but generated outputs can still drift.
 ```
+
+## Korean Costume And Setting Rule
+
+User correction on 2026-05-15:
+
+```text
+옷차림에 유의해줘. 중국풍이 아니라 한국풍으로 만들어야해.
+```
+
+This is essential. The deck must not read as generic East Asian fantasy, Chinese hanfu, or wuxia styling.
+
+Allowed Korean visual anchors:
+
+```text
+hanbok jeogori and chima
+durumagi, dopo, jeonbok, baeja
+gat, manggeon, samo, ikseongwan when historically suitable
+norigae, daenggi, binyeo, jokduri, Korean-style hair ribbons
+Joseon/Goryeo-inspired ceremonial robes with restrained volume
+Korean lamellar or ceremonial armor when needed
+bojagi, jogakbo, hanji, dancheong, najeonchilgi, moon jar, lotus lantern
+Korean palace/hanok proportions, tiled roofs, wooden lattice doors
+```
+
+Avoid:
+
+```text
+Chinese hanfu silhouettes
+wuxia/fantasy warrior robes
+oversized flowing immortal sleeves
+Chinese hair crowns or phoenix crowns
+Chinese palace gates, round moon gates, dragon-heavy ornament
+calligraphy-like background bands
+hanzi-like architectural decoration
+generic xianxia ribbons and floating sashes
+```
+
+Prompt add-on:
+
+```text
+Use clearly Korean Joseon/Goryeo-inspired costume and setting, not Chinese hanfu or wuxia fantasy. Use hanbok-based layers such as durumagi, dopo, jeogori/chima, jeonbok, gat/manggeon/binyeo/norigae/daenggi where appropriate. Korean hanok/palace proportions, dancheong, hanji, najeonchilgi, bojagi, moon jar, and lotus lantern details. Avoid Chinese hair crowns, hanfu silhouettes, xianxia ribbons, dragon-heavy ornament, Chinese palace gates, and any hanzi-like decorative marks.
+```
