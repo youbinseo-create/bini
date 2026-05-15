@@ -328,3 +328,44 @@ Updated warning:
 Jangin S1 should become a style anchor for Korean material identity.
 Future cards should borrow its Korean craft specificity rather than relying on generic palace fantasy.
 ```
+
+## 2026-05-15 Candidate Audit: Face, Korean Costume, Bottom Symbols
+
+User requested a check of:
+
+```text
+인물 얼굴의 매력도
+의복이 한국적인지
+아래 상징이 소재 한개만 되는데 너무 배경과 잡다한 요소가 있는지
+```
+
+Audit file:
+
+```text
+tarot/CARD_CANDIDATE_AUDIT.md
+```
+
+Conclusion:
+
+```text
+Face appeal has improved significantly.
+Korean costume authenticity is uneven.
+Bottom medallions are too cluttered across almost all current candidates.
+```
+
+Most important correction:
+
+```text
+Bottom medallions must stop being miniature still-life scenes.
+Each should become one clear symbolic object on a plain pearl/hanji/najeon background.
+```
+
+Production gate update:
+
+```text
+A card cannot become a final master unless it passes:
+1. Face appeal
+2. Korean costume/setting authenticity
+3. Exact 1024 x 1536 format
+4. One-object bottom-symbol clarity
+```

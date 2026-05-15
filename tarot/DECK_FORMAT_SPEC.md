@@ -242,3 +242,45 @@ Prompt add-on:
 ```text
 Use clearly Korean Joseon/Goryeo-inspired costume and setting, not Chinese hanfu or wuxia fantasy. Use hanbok-based layers such as durumagi, dopo, jeogori/chima, jeonbok, gat/manggeon/binyeo/norigae/daenggi where appropriate. Korean hanok/palace proportions, dancheong, hanji, najeonchilgi, bojagi, moon jar, and lotus lantern details. Avoid Chinese hair crowns, hanfu silhouettes, xianxia ribbons, dragon-heavy ornament, Chinese palace gates, and any hanzi-like decorative marks.
 ```
+
+## Bottom Medallion Simplification Rule
+
+User correction on 2026-05-15:
+
+```text
+아래 상징이 소재 한개만 되는데 너무 배경과 잡다한 요소가 있는건 아닌지 확인해줘.
+```
+
+New rule:
+
+```text
+Bottom medallions are symbols, not miniature scenes.
+Use one primary object only.
+```
+
+Allowed composition:
+
+```text
+one primary object
+one tiny accent
+one simple glow, line, ripple, or knot
+plain pearl/hanji/najeon background
+```
+
+Avoid:
+
+```text
+landscapes
+architecture
+rooms
+tables
+many props
+multiple objects of equal importance
+scenic background inside the medallion
+```
+
+Prompt add-on:
+
+```text
+Each lower medallion must contain only one clear symbolic object on a plain mother-of-pearl background, with at most one tiny accent. Do not include scenery, architecture, landscapes, rooms, tables, or multiple props inside the lower medallions.
+```
