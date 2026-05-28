@@ -1,7 +1,10 @@
 const state = {
   quotes: null,
   loading: false,
+  trades: [],
 };
+
+const TRADE_STORAGE_KEY = "usdt-arbitrage-trades-v1";
 
 const els = {
   amount: document.querySelector("#amountInput"),
@@ -35,6 +38,14 @@ const els = {
   kbCashSellPreferred: document.querySelector("#kbCashSellPreferred"),
   kbReceive: document.querySelector("#kbReceive"),
   kbReceivePreferred: document.querySelector("#kbReceivePreferred"),
+  tradeForm: document.querySelector("#tradeForm"),
+  tradeDate: document.querySelector("#tradeDateInput"),
+  tradeAmount: document.querySelector("#tradeAmountInput"),
+  tradeBuyPrice: document.querySelector("#tradeBuyPriceInput"),
+  tradeSellPrice: document.querySelector("#tradeSellPriceInput"),
+  tradeWarning: document.querySelector("#tradeWarning"),
+  tradeRows: document.querySelector("#tradeRows"),
+  tradeTotal: document.querySelector("#tradeTotal"),
 };
 
 const money = new Intl.NumberFormat("ko-KR", { maximumFractionDigits: 0 });
@@ -67,6 +78,30 @@ function formatMoney(value, signed = false) {
   if (!Number.isFinite(value)) return "-";
   const sign = signed && value > 0 ? "+" : signed && value < 0 ? "-" : "";
   return `${sign}${money.format(Math.abs(value))}원`;
+}
+
+function localDateText(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function loadTrades() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(TRADE_STORAGE_KEY) || "[]");
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveTrades() {
+  localStorage.setItem(TRADE_STORAGE_KEY, JSON.stringify(state.trades));
+}
+
+function profitForTrade(trade) {
+  return (trade.sellPrice - trade.buyPrice) * trade.amount;
 }
 
 function preferredSellRate(baseRate, rawSellRate, preference = 0.9) {
@@ -305,6 +340,50 @@ function renderTable(rows) {
     .join("");
 }
 
+function tradeValidationMessage() {
+  const amount = asNumber(els.tradeAmount, 0);
+  const buyPrice = asNumber(els.tradeBuyPrice, 0);
+  const sellPrice = asNumber(els.tradeSellPrice, 0);
+
+  if (!els.tradeDate.value) return "진행 날짜를 입력하세요.";
+  if (amount <= 0) return "수량은 0보다 커야 합니다.";
+  if (buyPrice <= 0) return "산 가격은 0보다 커야 합니다.";
+  if (sellPrice <= 0) return "판 가격은 0보다 커야 합니다.";
+  return "";
+}
+
+function renderTrades() {
+  const totalProfit = state.trades.reduce((sum, trade) => sum + profitForTrade(trade), 0);
+  els.tradeTotal.textContent = `누적 ${formatMoney(totalProfit, true)}`;
+  els.tradeTotal.className = `tradeTotal ${
+    totalProfit > 0 ? "positive" : totalProfit < 0 ? "negative" : "neutral"
+  }`;
+
+  if (!state.trades.length) {
+    els.tradeRows.innerHTML =
+      '<tr><td colspan="6" class="empty">아직 기록이 없습니다.</td></tr>';
+    return;
+  }
+
+  els.tradeRows.innerHTML = [...state.trades]
+    .sort((a, b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id))
+    .map((trade) => {
+      const profit = profitForTrade(trade);
+      const tone = profit > 0 ? "positive" : profit < 0 ? "negative" : "neutral";
+      return `
+        <tr>
+          <td data-label="날짜"><span class="cellValue">${trade.date}</span></td>
+          <td data-label="수량"><span class="cellValue">${formatAmount(trade.amount)}</span></td>
+          <td data-label="산 가격"><span class="cellValue">${formatRate(trade.buyPrice)}</span></td>
+          <td data-label="판 가격"><span class="cellValue">${formatRate(trade.sellPrice)}</span></td>
+          <td data-label="실현 차익" class="${tone}"><span class="cellValue">${formatMoney(profit, true)}</span></td>
+          <td data-label="삭제"><button class="deleteButton" type="button" data-trade-id="${trade.id}">삭제</button></td>
+        </tr>
+      `;
+    })
+    .join("");
+}
+
 function renderSummary(rows) {
   const invalid = validationMessage();
   const effectiveRate = getEffectiveKbRate();
@@ -346,6 +425,33 @@ function render() {
   const rows = calculateRows();
   renderSummary(rows);
   renderTable(rows);
+}
+
+function addTrade(event) {
+  event.preventDefault();
+  const message = tradeValidationMessage();
+  els.tradeWarning.hidden = !message;
+  els.tradeWarning.textContent = message;
+  if (message) return;
+
+  state.trades.push({
+    id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+    date: els.tradeDate.value,
+    amount: asNumber(els.tradeAmount, 5000),
+    buyPrice: asNumber(els.tradeBuyPrice, 0),
+    sellPrice: asNumber(els.tradeSellPrice, 0),
+  });
+  saveTrades();
+  renderTrades();
+  els.tradeWarning.hidden = true;
+  els.tradeBuyPrice.value = "";
+  els.tradeSellPrice.value = "";
+}
+
+function deleteTrade(id) {
+  state.trades = state.trades.filter((trade) => trade.id !== id);
+  saveTrades();
+  renderTrades();
 }
 
 async function loadQuotes() {
@@ -397,6 +503,15 @@ async function loadQuotes() {
 });
 
 els.refreshButton.addEventListener("click", loadQuotes);
+els.tradeForm.addEventListener("submit", addTrade);
+els.tradeRows.addEventListener("click", (event) => {
+  const id = event.target?.dataset?.tradeId;
+  if (id) deleteTrade(id);
+});
 
+state.trades = loadTrades();
+els.tradeDate.value = localDateText();
+els.tradeAmount.value = els.amount.value || "5000";
+renderTrades();
 loadQuotes();
 setInterval(loadQuotes, 10_000);
