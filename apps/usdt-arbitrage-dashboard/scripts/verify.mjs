@@ -78,6 +78,7 @@ try {
     "tradeSellPriceInput",
     "tradeRows",
     "tradeTotal",
+    "rateSourceBox",
   ]) {
     assert.ok(pageHtml.includes(marker), `Page is missing expected marker: ${marker}`);
   }
@@ -91,6 +92,8 @@ try {
     "renderTrades",
     "addTrade",
     "deleteTrade",
+    "getEffectiveRateInfo",
+    "1차 Star FX 미입력, 2차 KB 대안 적용",
     "setInterval(loadQuotes, 10_000)",
   ]) {
     assert.ok(appJs.includes(marker), `App script is missing expected marker: ${marker}`);

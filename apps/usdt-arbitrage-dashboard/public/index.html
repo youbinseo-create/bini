@@ -115,10 +115,14 @@
             <label class="field manualField" id="manualRateField">
               <span>Star FX 앱 표시 환율</span>
               <div class="inputSuffix">
-                <input id="manualRateInput" type="number" min="0" step="0.01" value="0" />
+                <input id="manualRateInput" type="number" min="0" step="0.01" placeholder="앱 환율 입력" />
                 <span>원</span>
               </div>
             </label>
+            <div id="rateSourceBox" class="rateSourceBox" hidden>
+              <span id="rateSourceTitle">-</span>
+              <small id="rateSourceDetail">-</small>
+            </div>
             <div id="rateDiffBox" class="rateDiffBox" hidden>
               <span>KB 전신환 90% 추정 대비</span>
               <strong id="rateDiff">-</strong>

@@ -16,6 +16,9 @@ const els = {
   kbMode: document.querySelector("#kbModeInput"),
   manualRate: document.querySelector("#manualRateInput"),
   manualRateField: document.querySelector("#manualRateField"),
+  rateSourceBox: document.querySelector("#rateSourceBox"),
+  rateSourceTitle: document.querySelector("#rateSourceTitle"),
+  rateSourceDetail: document.querySelector("#rateSourceDetail"),
   rateDiffBox: document.querySelector("#rateDiffBox"),
   rateDiff: document.querySelector("#rateDiff"),
   rateDiffImpact: document.querySelector("#rateDiffImpact"),
@@ -156,25 +159,87 @@ function getKbDerived(kb) {
   };
 }
 
-function getEffectiveKbRate() {
+function getFallbackKbRate() {
+  const kb = state.quotes?.kb;
+  const derived = getKbDerived(kb);
+  return derived?.receivePreferred ?? derived?.cashSellPreferred ?? kb?.baseRate ?? null;
+}
+
+function getEffectiveRateInfo() {
   const kb = state.quotes?.kb;
   const derived = getKbDerived(kb);
   const mode = els.kbMode.value;
+  const starFxRate = asNumber(els.manualRate, 0);
 
-  if (mode === "starFx" || mode === "manual") return asNumber(els.manualRate, null);
-  if (!kb) return null;
-  if (mode === "baseRate") return kb.baseRate;
-  if (mode === "remittanceReceive") return derived?.receivePreferred ?? null;
-  return derived?.cashSellPreferred ?? null;
+  if (mode === "starFx") {
+    if (starFxRate > 0) {
+      return {
+        rate: starFxRate,
+        source: "starFx",
+        title: "1차 Star FX 앱 환율 적용",
+        detail: "앱에서 확인한 고객적용환율을 그대로 사용합니다.",
+      };
+    }
+
+    const fallbackRate = getFallbackKbRate();
+    return {
+      rate: fallbackRate,
+      source: "fallback",
+      title: "1차 Star FX 미입력, 2차 KB 대안 적용",
+      detail: "Star FX 앱 환율이 없어서 KB 송금 받을 때 90% 우대를 임시 기준으로 사용합니다.",
+    };
+  }
+
+  if (mode === "manual") {
+    return {
+      rate: starFxRate > 0 ? starFxRate : null,
+      source: "manual",
+      title: "수동 환율 적용",
+      detail: "사용자가 입력한 환율을 그대로 사용합니다.",
+    };
+  }
+
+  if (!kb) {
+    return {
+      rate: null,
+      source: "missing",
+      title: "KB 대안 환율 대기 중",
+      detail: "KB 환율 데이터가 아직 들어오지 않았습니다.",
+    };
+  }
+
+  if (mode === "baseRate") {
+    return {
+      rate: kb.baseRate,
+      source: "kb",
+      title: "KB 매매기준율 적용",
+      detail: "KB 공개 고시 매매기준율을 사용합니다.",
+    };
+  }
+
+  if (mode === "remittanceReceive") {
+    return {
+      rate: derived?.receivePreferred ?? null,
+      source: "kb",
+      title: "KB 송금 받을 때 90% 우대 적용",
+      detail: "KB 송금 받을 때 환율에서 스프레드 90% 우대를 계산합니다.",
+    };
+  }
+
+  return {
+    rate: derived?.cashSellPreferred ?? null,
+    source: "kb",
+    title: "KB 현찰 파실 때 90% 우대 적용",
+    detail: "KB 현찰 파실 때 환율에서 스프레드 90% 우대를 계산합니다.",
+  };
+}
+
+function getEffectiveKbRate() {
+  return getEffectiveRateInfo().rate;
 }
 
 function getEffectiveHint() {
-  const mode = els.kbMode.value;
-  if (mode === "starFx") return "Star FX 앱 표시 환율 직접 반영";
-  if (mode === "manual") return "사용자 입력값 직접 반영";
-  if (mode === "baseRate") return "KB 매매기준율 그대로";
-  if (mode === "remittanceReceive") return "송금 받을 때 스프레드 90% 차감";
-  return "현찰 파실 때 스프레드 90% 차감";
+  return getEffectiveRateInfo().title;
 }
 
 function isManualRateMode() {
@@ -194,6 +259,7 @@ function validationMessage() {
   const upbitFee = asNumber(els.upbitFee, 0);
   const bithumbFee = asNumber(els.bithumbFee, 0);
   const manualRate = asNumber(els.manualRate, 0);
+  const fallbackRate = getFallbackKbRate();
 
   if (amount <= 0) return "테더 수량은 0보다 커야 합니다.";
   if (transferFee < 0) return "전송 수수료는 0 이상이어야 합니다.";
@@ -201,7 +267,10 @@ function validationMessage() {
   if (upbitFee < 0 || bithumbFee < 0) return "거래 수수료는 0 이상이어야 합니다.";
   if (fixedCost < 0) return "고정비는 0 이상이어야 합니다.";
   if (priceBuffer < 0) return "보수적 매수가 버퍼는 0 이상이어야 합니다.";
-  if (isManualRateMode() && manualRate <= 0) {
+  if (els.kbMode.value === "starFx" && manualRate <= 0 && !Number.isFinite(fallbackRate)) {
+    return "Star FX 앱 환율을 입력하거나 KB 대안 환율을 기다려야 합니다.";
+  }
+  if (els.kbMode.value === "manual" && manualRate <= 0) {
     return "Star FX 앱 환율은 0보다 커야 합니다.";
   }
   return "";
@@ -279,9 +348,19 @@ function renderKb() {
   els.kbReceive.textContent = formatRate(kb.remittanceReceive);
   els.kbReceivePreferred.textContent = formatRate(derived.receivePreferred);
 
-  if (asNumber(els.manualRate, 0) === 0) {
-    els.manualRate.value = (derived.receivePreferred || derived.cashSellPreferred || kb.baseRate || 0).toFixed(2);
-  }
+}
+
+function renderRateSource() {
+  const info = getEffectiveRateInfo();
+  const shouldShow = els.kbMode.value === "starFx";
+
+  els.rateSourceBox.hidden = !shouldShow;
+  if (!shouldShow) return;
+
+  els.rateSourceBox.classList.toggle("fallback", info.source === "fallback");
+  els.rateSourceBox.classList.toggle("primary", info.source === "starFx");
+  els.rateSourceTitle.textContent = info.title;
+  els.rateSourceDetail.textContent = info.detail;
 }
 
 function renderRateDiff() {
@@ -389,6 +468,7 @@ function renderSummary(rows) {
   const effectiveRate = getEffectiveKbRate();
   els.effectiveRate.textContent = formatRate(effectiveRate);
   els.effectiveRateHint.textContent = getEffectiveHint();
+  renderRateSource();
   renderRateDiff();
   els.inputWarning.hidden = !invalid;
   els.inputWarning.textContent = invalid;
