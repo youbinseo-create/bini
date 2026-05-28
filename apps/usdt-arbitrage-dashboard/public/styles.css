@@ -1,0 +1,572 @@
+:root {
+  color-scheme: light;
+  --bg: #f3f5f4;
+  --panel: #ffffff;
+  --ink: #17201d;
+  --muted: #66736f;
+  --line: #d9e1dd;
+  --line-strong: #c5d0cb;
+  --green: #087f5b;
+  --red: #c92a2a;
+  --blue: #1f5f99;
+  --amber: #a46a00;
+  --shadow: 0 14px 34px rgba(25, 36, 32, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  font-family:
+    "Segoe UI",
+    "Malgun Gothic",
+    system-ui,
+    sans-serif;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.shell {
+  width: min(1220px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 26px 0 42px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 18px;
+  margin-bottom: 16px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 32px;
+  letter-spacing: 0;
+}
+
+h2 {
+  font-size: 17px;
+  letter-spacing: 0;
+}
+
+.topMeta {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.basisBadge,
+.status {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.basisBadge strong {
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #adb5bd;
+}
+
+.dot.live {
+  background: var(--green);
+}
+
+.dot.error {
+  background: var(--red);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(220px, 0.75fr) minmax(220px, 0.75fr);
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.profitHero,
+.metric,
+.panel,
+.riskBanner,
+.notice {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.profitHero {
+  min-height: 142px;
+  display: grid;
+  grid-template-columns: 1fr minmax(210px, 0.58fr);
+  align-items: end;
+  gap: 20px;
+  padding: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.profitHero strong {
+  display: block;
+  font-size: 44px;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.profitHero small,
+.metric small {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.profitHero p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.profitHero p b {
+  color: var(--ink);
+}
+
+.metric {
+  min-height: 142px;
+  padding: 20px;
+}
+
+.metric strong {
+  display: block;
+  min-height: 34px;
+  font-size: 29px;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.riskBanner {
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border-color: rgba(201, 42, 42, 0.25);
+  background: #fff5f5;
+  color: #9b1c1c;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.45;
+  box-shadow: none;
+  overflow-wrap: anywhere;
+}
+
+.workbench {
+  display: grid;
+  grid-template-columns: 330px minmax(0, 1fr);
+  align-items: start;
+  gap: 14px;
+}
+
+.panel {
+  overflow: hidden;
+  min-width: 0;
+}
+
+.controlsPanel {
+  position: sticky;
+  top: 14px;
+}
+
+.panelHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 18px 12px;
+}
+
+.panelHead p {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.compact {
+  display: block;
+}
+
+.controlGrid {
+  display: grid;
+  gap: 12px;
+  padding: 0 18px 18px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.primaryAmount input {
+  min-height: 52px;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+input,
+select {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid #cbd6d1;
+  border-radius: 7px;
+  padding: 0 11px;
+  background: #fff;
+  color: var(--ink);
+}
+
+input:focus,
+select:focus,
+button:focus-visible {
+  outline: 3px solid rgba(31, 95, 153, 0.2);
+  border-color: var(--blue);
+}
+
+.inputSuffix {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  border: 1px solid #cbd6d1;
+  border-radius: 7px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.inputSuffix input {
+  border: 0;
+  border-radius: 0;
+}
+
+.inputSuffix span {
+  padding: 0 11px;
+  color: var(--muted);
+}
+
+.manualField {
+  display: none;
+}
+
+.manualField.visible {
+  display: grid;
+}
+
+.primaryButton {
+  min-height: 44px;
+  border: 0;
+  border-radius: 7px;
+  padding: 0 17px;
+  background: var(--ink);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.primaryButton:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.inputWarning {
+  padding: 10px 12px;
+  border: 1px solid rgba(201, 42, 42, 0.25);
+  border-radius: 7px;
+  background: #fff5f5;
+  color: #9b1c1c;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.mainStack {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.tableWrap {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  min-width: 0;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 14px 15px;
+  border-top: 1px solid var(--line);
+  text-align: right;
+  white-space: nowrap;
+}
+
+th:first-child,
+td:first-child {
+  text-align: left;
+}
+
+th {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+td {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+td small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.cellValue {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+}
+
+.positive {
+  color: var(--green);
+}
+
+.negative {
+  color: var(--red);
+}
+
+.neutral {
+  color: var(--amber);
+}
+
+.rateList {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0 18px 18px;
+}
+
+.rateList div {
+  padding: 12px 12px 12px 0;
+  border-top: 1px solid var(--line);
+}
+
+.rateList dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.rateList dd {
+  margin: 5px 0 0;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.notice {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 14px 16px;
+  box-shadow: none;
+}
+
+.notice strong {
+  color: var(--red);
+}
+
+.notice p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+@media (max-width: 980px) {
+  .topbar {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .topMeta {
+    justify-content: flex-start;
+  }
+
+  .heroGrid,
+  .workbench {
+    grid-template-columns: 1fr;
+  }
+
+  .profitHero {
+    grid-template-columns: 1fr;
+  }
+
+  .controlsPanel {
+    position: static;
+  }
+
+  .controlGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .primaryAmount,
+  .manualField,
+  .primaryButton,
+  .inputWarning {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 700px) {
+  .shell {
+    width: 100%;
+    padding: 18px 10px 34px;
+  }
+
+  h1 {
+    font-size: 27px;
+  }
+
+  .profitHero strong {
+    font-size: 36px;
+  }
+
+  .metric strong {
+    font-size: 25px;
+  }
+
+  .controlGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .rateList {
+    grid-template-columns: 1fr;
+  }
+
+  .rateList div {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding-right: 0;
+  }
+
+  .tableWrap {
+    overflow-x: visible;
+  }
+
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    padding: 12px 14px;
+    border-top: 1px solid var(--line);
+  }
+
+  td {
+    padding: 8px 0;
+    border-top: 0;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  td:first-child {
+    text-align: left;
+  }
+
+  td::before {
+    content: attr(data-label);
+    display: block;
+    margin-bottom: 3px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  .cellValue {
+    display: block;
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+
+  .notice {
+    grid-template-columns: 1fr;
+  }
+}
