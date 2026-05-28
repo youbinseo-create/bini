@@ -43,13 +43,13 @@ node scripts\verify.mjs
 
 ### Vercel
 
-이 저장소에는 Vercel용 서버리스 API가 포함돼 있습니다.
+이 저장소는 Vercel에서 `server.mjs`를 Node 서버 진입점으로 사용합니다.
 
 ```powershell
 npx.cmd --yes vercel@latest --prod
 ```
 
-Vercel에서는 `public/` 폴더가 화면을 담당하고, `api/quotes.js`가 빗썸/업비트/KB 데이터를 가져옵니다. 핵심 계산 데이터 수집 로직은 `lib/quotes.mjs`를 로컬 서버와 Vercel API가 같이 사용합니다.
+`server.mjs`가 `public/` 화면 파일과 `/api/quotes` 실시간 데이터 API를 같이 제공합니다. 빗썸/업비트/KB 데이터 수집 로직은 `lib/quotes.mjs`에 분리돼 있어 서버 진입점이 짧고 검증하기 쉽습니다.
 
 ### Render
 
