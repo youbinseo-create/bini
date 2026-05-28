@@ -68,9 +68,33 @@ child.stderr.on("data", (chunk) => {
 try {
   const pageResponse = await fetchWithRetry(baseUrl);
   assert.equal(pageResponse.headers.get("content-type")?.includes("text/html"), true);
+  const pageHtml = await pageResponse.text();
+  for (const marker of [
+    'value="starFx"',
+    "tradeForm",
+    "tradeDateInput",
+    "tradeAmountInput",
+    "tradeBuyPriceInput",
+    "tradeSellPriceInput",
+    "tradeRows",
+    "tradeTotal",
+  ]) {
+    assert.ok(pageHtml.includes(marker), `Page is missing expected marker: ${marker}`);
+  }
 
   const jsResponse = await fetchWithRetry(`${baseUrl}/app.js`);
   assert.equal(jsResponse.headers.get("content-type")?.includes("text/javascript"), true);
+  const appJs = await jsResponse.text();
+  for (const marker of [
+    "TRADE_STORAGE_KEY",
+    "profitForTrade",
+    "renderTrades",
+    "addTrade",
+    "deleteTrade",
+    "setInterval(loadQuotes, 10_000)",
+  ]) {
+    assert.ok(appJs.includes(marker), `App script is missing expected marker: ${marker}`);
+  }
 
   const badPathResponse = await fetch(`${baseUrl}/%E0%A4%A`);
   assert.equal(badPathResponse.status, 400, "Malformed URL path should return 400");
@@ -108,6 +132,12 @@ try {
   const receivePreferred = preferredSellRate(kb.baseRate, kb.remittanceReceive);
   assert.ok(cashPreferred > kb.cashSell && cashPreferred < kb.baseRate);
   assert.ok(receivePreferred > kb.remittanceReceive && receivePreferred < kb.baseRate);
+  assert.equal((1500 - 1498) * 5000, 10000, "2 KRW rate gap should move 5,000 USDT by 10,000 KRW");
+  assert.equal(
+    Math.round((1503.55 - 1476) * 5000),
+    137750,
+    "Actual trade profit calculation should round to the expected KRW amount"
+  );
 
   const amount = 5000;
   const calculations = data.tickers.map((ticker) => {
