@@ -90,17 +90,53 @@ function localDateText(date = new Date()) {
   return `${year}-${month}-${day}`;
 }
 
+function normalizeTrade(trade) {
+  if (!trade || typeof trade !== "object") return null;
+
+  const amount = Number(trade.amount);
+  const buyPrice = Number(trade.buyPrice);
+  const sellPrice = Number(trade.sellPrice);
+
+  if (![amount, buyPrice, sellPrice].every(Number.isFinite)) return null;
+  if (amount <= 0 || buyPrice <= 0 || sellPrice <= 0) return null;
+
+  const rawDate = typeof trade.date === "string" ? trade.date.trim() : "";
+  const date = /^\d{4}-\d{2}-\d{2}$/.test(rawDate) ? rawDate : localDateText();
+  const id =
+    typeof trade.id === "string" && trade.id.trim()
+      ? trade.id
+      : `${date}-${amount}-${buyPrice}-${sellPrice}`;
+
+  return {
+    id,
+    date,
+    amount,
+    buyPrice,
+    sellPrice,
+  };
+}
+
 function loadTrades() {
   try {
     const parsed = JSON.parse(localStorage.getItem(TRADE_STORAGE_KEY) || "[]");
-    return Array.isArray(parsed) ? parsed : [];
+    if (!Array.isArray(parsed)) return [];
+
+    const trades = parsed.map(normalizeTrade).filter(Boolean);
+    if (trades.length !== parsed.length) {
+      localStorage.setItem(TRADE_STORAGE_KEY, JSON.stringify(trades));
+    }
+    return trades;
   } catch {
     return [];
   }
 }
 
 function saveTrades() {
-  localStorage.setItem(TRADE_STORAGE_KEY, JSON.stringify(state.trades));
+  try {
+    localStorage.setItem(TRADE_STORAGE_KEY, JSON.stringify(state.trades));
+  } catch {
+    // Browser storage can be disabled or full. The dashboard should still calculate live quotes.
+  }
 }
 
 function profitForTrade(trade) {
@@ -445,7 +481,11 @@ function renderTrades() {
   }
 
   els.tradeRows.innerHTML = [...state.trades]
-    .sort((a, b) => b.date.localeCompare(a.date) || b.id.localeCompare(a.id))
+    .sort(
+      (a, b) =>
+        String(b.date || "").localeCompare(String(a.date || "")) ||
+        String(b.id || "").localeCompare(String(a.id || ""))
+    )
     .map((trade) => {
       const profit = profitForTrade(trade);
       const tone = profit > 0 ? "positive" : profit < 0 ? "negative" : "neutral";

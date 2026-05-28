@@ -90,6 +90,7 @@ try {
     "TRADE_STORAGE_KEY",
     "profitForTrade",
     "renderTrades",
+    "normalizeTrade",
     "addTrade",
     "deleteTrade",
     "getEffectiveRateInfo",
