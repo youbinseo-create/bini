@@ -147,7 +147,7 @@ async function getBithumbMarket() {
 
 function parseKbRates(html) {
   const tableIndex = html.indexOf('summary="적용일자');
-  if (tableIndex < 0) throw new Error("KB rate detail table was not found.");
+  if (tableIndex < 0) return parseKbQuickRates(html);
 
   const tableHtml = html.slice(tableIndex, tableIndex + 18000);
   const firstRow = tableHtml.match(/<tbody>[\s\S]*?<tr>([\s\S]*?)<\/tr>/);
@@ -189,24 +189,136 @@ function parseKbRates(html) {
   };
 }
 
-async function getKbRates() {
-  const response = await fetchWithTimeout(
-    "https://obizapi.kbstar.com/quics?page=C101597",
-    {
-      headers: {
-        accept: "text/html",
-        "user-agent": "Mozilla/5.0 usdt-arbitrage-dashboard/1.0",
-      },
-    },
+function parseUsdQuickRow(tableHtml, label) {
+  const rows = [...tableHtml.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/g)].map((match) => match[1]);
+  const usdRow = rows.find((row) => row.includes('alt="USD"') || row.includes(">USD<"));
+  if (!usdRow) throw new Error(`KB quick ${label} USD row was not found.`);
+
+  const cells = [...usdRow.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/g)].map((match) =>
+    numberFromText(stripHtml(match[1]))
+  );
+  if (cells.length < 2 || !cells.every(Number.isFinite)) {
+    throw new Error(`KB quick ${label} USD row values are incomplete.`);
+  }
+  return cells;
+}
+
+function parseKbQuickRates(html) {
+  const tables = [...html.matchAll(/<table[^>]*>[\s\S]*?<\/table>/g)].map((match) => match[0]);
+  const cashTable = tables.find(
+    (table) =>
+      table.includes("icn_usd.png") && table.includes("사실때") && table.includes("파실때")
+  );
+  const remittanceTable = tables.find(
+    (table) =>
+      table.includes("icn_usd.png") && table.includes("보낼때") && table.includes("받을때")
+  );
+
+  if (!cashTable || !remittanceTable) {
+    throw new Error("KB quick rate tables were not found.");
+  }
+
+  const [cashBuy, cashSell] = parseUsdQuickRow(cashTable, "cash");
+  const [remittanceSend, remittanceReceive] = parseUsdQuickRow(remittanceTable, "remittance");
+  const baseRate = (remittanceSend + remittanceReceive) / 2;
+  const descriptor = stripHtml(
+    html.match(/<p[^>]*class="excDesc"[^>]*>\s*\*?\s*([\s\S]*?)<\/p>/)?.[1] || ""
+  );
+  const [, queryDate = "", quoteTime = "", quoteRound = ""] =
+    descriptor.match(/(\d{4}\.\d{2}\.\d{2})\s+(\d{2}:\d{2}:\d{2})\s+(\d+)회차/) || [];
+
+  return {
+    source: "KB국민은행",
+    quoteRound: numberFromText(quoteRound),
+    quoteTime,
+    baseRate,
+    remittanceSend,
+    remittanceReceive,
+    cashBuy,
+    cashSell,
+    usdConversion: baseRate,
+    cashBuySpreadPct: ((cashBuy - baseRate) / baseRate) * 100,
+    cashSellSpreadPct: ((baseRate - cashSell) / baseRate) * 100,
+    firstRate: null,
+    currentRate: null,
+    queryDate,
+    queryDateTime: `${queryDate} ${quoteTime}`.trim(),
+  };
+}
+
+function parseKbJsonRates(data) {
+  const serviceData = data?.msg?.servicedata;
+  const usd = serviceData?.ARRAY수?.find((row) => row.통화코드 === "USD");
+  if (!usd) throw new Error("KB JSON USD rate row was not found.");
+
+  const baseRate = numberFromText(usd.기준환율);
+  const cashBuy = numberFromText(usd.현찰매도환율);
+  const cashSell = numberFromText(usd.현찰매입환율);
+  const remittanceSend = numberFromText(usd.전신환매도율);
+  const remittanceReceive = numberFromText(usd.전신환매입율 || usd.전신환매입률);
+
+  if (![baseRate, cashBuy, cashSell, remittanceSend, remittanceReceive].every(Number.isFinite)) {
+    throw new Error("KB JSON USD rate values are incomplete.");
+  }
+
+  return {
+    source: "KB국민은행",
+    quoteRound: numberFromText(serviceData.적용회차),
+    quoteTime: serviceData.적용시분초 || "",
+    baseRate,
+    remittanceSend,
+    remittanceReceive,
+    cashBuy,
+    cashSell,
+    usdConversion: baseRate,
+    cashBuySpreadPct: ((cashBuy - baseRate) / baseRate) * 100,
+    cashSellSpreadPct: ((baseRate - cashSell) / baseRate) * 100,
+    firstRate: null,
+    currentRate: null,
+    queryDate: serviceData.적용일자 || "",
+    queryDateTime: `${serviceData.적용일자 || ""} ${serviceData.적용시분초 || ""}`.trim(),
+  };
+}
+
+async function getKbRatesFromJson() {
+  const data = await fetchJson(
+    "https://obizapi.kbstar.com/quics?QAction=1221719&page=C101597",
     "KB"
   );
 
-  if (!response.ok) {
-    throw new Error(`KB rate page response error: HTTP ${response.status}`);
+  if (data?.msg?.common?.status !== "S") {
+    throw new Error("KB JSON rate response status is not successful.");
   }
 
-  const html = await response.text();
-  return parseKbRates(html);
+  return parseKbJsonRates(data);
+}
+
+async function getKbRates() {
+  try {
+    return await getKbRatesFromJson();
+  } catch (jsonError) {
+    const response = await fetchWithTimeout(
+      "https://obizapi.kbstar.com/quics?page=C101597",
+      {
+        headers: {
+          accept: "text/html",
+          "user-agent": "Mozilla/5.0 usdt-arbitrage-dashboard/1.0",
+        },
+      },
+      "KB"
+    );
+
+    if (!response.ok) {
+      throw new Error(`KB rate page response error: HTTP ${response.status}`);
+    }
+
+    try {
+      const html = await response.text();
+      return parseKbRates(html);
+    } catch (htmlError) {
+      throw new Error(`${jsonError.message} / ${htmlError.message}`);
+    }
+  }
 }
 
 export async function getQuotes() {
