@@ -41,9 +41,21 @@ node scripts\verify.mjs
 
 ## 배포
 
+### Vercel
+
+이 저장소에는 Vercel용 서버리스 API가 포함돼 있습니다.
+
+```powershell
+npx.cmd --yes vercel@latest --prod
+```
+
+Vercel에서는 `public/` 폴더가 화면을 담당하고, `api/quotes.js`가 빗썸/업비트/KB 데이터를 가져옵니다. 핵심 계산 데이터 수집 로직은 `lib/quotes.mjs`를 로컬 서버와 Vercel API가 같이 사용합니다.
+
+### Render
+
 이 앱은 서버에서 외부 API와 KB 환율 페이지를 가져옵니다. 그래서 GitHub Pages 같은 정적 호스팅만으로는 동일하게 동작하지 않습니다.
 
-추천 배포 방식은 Render Web Service입니다.
+Render Web Service로도 배포할 수 있습니다.
 
 1. 이 폴더를 GitHub 저장소로 올립니다.
 2. Render에서 `New Web Service`를 선택합니다.
