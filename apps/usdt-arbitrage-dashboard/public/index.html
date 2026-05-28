@@ -39,7 +39,7 @@
         </article>
 
         <article class="metric">
-          <span class="label">KB 적용 환율</span>
+          <span class="label">KB / Star FX 적용 환율</span>
           <strong id="effectiveRate">-</strong>
           <small id="effectiveRateHint">90% 우대 계산 전</small>
         </article>
@@ -52,7 +52,7 @@
       </section>
 
       <section class="riskBanner" aria-label="핵심 주의">
-        USDT는 은행 USD가 아닙니다. 현금화 경로부터 확인하세요.
+        Star FX 앱 환율이 2원 다르면 5,000 USDT 기준 약 10,000원이 달라집니다. USDT 현금화 경로도 함께 확인하세요.
       </section>
 
       <section class="workbench">
@@ -105,19 +105,25 @@
             <label class="field">
               <span>KB 기준</span>
               <select id="kbModeInput">
-                <option value="cashSell">현찰 파실 때 90% 우대</option>
+                <option value="starFx" selected>Star FX 앱 매도환율</option>
                 <option value="remittanceReceive">송금 받을 때 90% 우대</option>
+                <option value="cashSell">현찰 파실 때 90% 우대</option>
                 <option value="baseRate">매매기준율</option>
-                <option value="manual">수동 입력</option>
+                <option value="manual">수동 환율</option>
               </select>
             </label>
             <label class="field manualField" id="manualRateField">
-              <span>수동 KB 환율</span>
+              <span>Star FX 앱 표시 환율</span>
               <div class="inputSuffix">
                 <input id="manualRateInput" type="number" min="0" step="0.01" value="0" />
                 <span>원</span>
               </div>
             </label>
+            <div id="rateDiffBox" class="rateDiffBox" hidden>
+              <span>KB 전신환 90% 추정 대비</span>
+              <strong id="rateDiff">-</strong>
+              <small id="rateDiffImpact">5,000 USDT 기준 영향 -</small>
+            </div>
             <button id="refreshButton" class="primaryButton" type="button">갱신</button>
             <div id="inputWarning" class="inputWarning" role="alert" hidden></div>
           </div>
@@ -187,6 +193,7 @@
         <p>
           실제 수익은 체결가, 호가 잔량, 거래소별 수수료, 출금 네트워크, USDT/USD 괴리,
           은행의 실제 적용 환율과 한도에 따라 달라집니다.
+          KB Star FX는 공개 KB 현찰 환율표와 다른 고객적용환율을 쓰므로 앱에 보이는 환율을 직접 입력하는 값이 가장 가깝습니다.
         </p>
       </section>
     </main>

@@ -13,6 +13,9 @@ const els = {
   kbMode: document.querySelector("#kbModeInput"),
   manualRate: document.querySelector("#manualRateInput"),
   manualRateField: document.querySelector("#manualRateField"),
+  rateDiffBox: document.querySelector("#rateDiffBox"),
+  rateDiff: document.querySelector("#rateDiff"),
+  rateDiffImpact: document.querySelector("#rateDiffImpact"),
   refreshButton: document.querySelector("#refreshButton"),
   inputWarning: document.querySelector("#inputWarning"),
   statusText: document.querySelector("#statusText"),
@@ -123,7 +126,7 @@ function getEffectiveKbRate() {
   const derived = getKbDerived(kb);
   const mode = els.kbMode.value;
 
-  if (mode === "manual") return asNumber(els.manualRate, null);
+  if (mode === "starFx" || mode === "manual") return asNumber(els.manualRate, null);
   if (!kb) return null;
   if (mode === "baseRate") return kb.baseRate;
   if (mode === "remittanceReceive") return derived?.receivePreferred ?? null;
@@ -132,10 +135,15 @@ function getEffectiveKbRate() {
 
 function getEffectiveHint() {
   const mode = els.kbMode.value;
-  if (mode === "manual") return "사용자 입력값";
+  if (mode === "starFx") return "Star FX 앱 표시 환율 직접 반영";
+  if (mode === "manual") return "사용자 입력값 직접 반영";
   if (mode === "baseRate") return "KB 매매기준율 그대로";
   if (mode === "remittanceReceive") return "송금 받을 때 스프레드 90% 차감";
   return "현찰 파실 때 스프레드 90% 차감";
+}
+
+function isManualRateMode() {
+  return els.kbMode.value === "starFx" || els.kbMode.value === "manual";
 }
 
 function feeRateForExchange(exchange) {
@@ -158,8 +166,8 @@ function validationMessage() {
   if (upbitFee < 0 || bithumbFee < 0) return "거래 수수료는 0 이상이어야 합니다.";
   if (fixedCost < 0) return "고정비는 0 이상이어야 합니다.";
   if (priceBuffer < 0) return "보수적 매수가 버퍼는 0 이상이어야 합니다.";
-  if (els.kbMode.value === "manual" && manualRate <= 0) {
-    return "수동 KB 환율은 0보다 커야 합니다.";
+  if (isManualRateMode() && manualRate <= 0) {
+    return "Star FX 앱 환율은 0보다 커야 합니다.";
   }
   return "";
 }
@@ -236,9 +244,31 @@ function renderKb() {
   els.kbReceive.textContent = formatRate(kb.remittanceReceive);
   els.kbReceivePreferred.textContent = formatRate(derived.receivePreferred);
 
-  if (els.kbMode.value !== "manual" && asNumber(els.manualRate, 0) === 0) {
-    els.manualRate.value = (derived.cashSellPreferred || kb.baseRate || 0).toFixed(2);
+  if (asNumber(els.manualRate, 0) === 0) {
+    els.manualRate.value = (derived.receivePreferred || derived.cashSellPreferred || kb.baseRate || 0).toFixed(2);
   }
+}
+
+function renderRateDiff() {
+  const kb = state.quotes?.kb;
+  const derived = getKbDerived(kb);
+  const referenceRate = derived?.receivePreferred;
+  const effectiveRate = getEffectiveKbRate();
+  const amount = asNumber(els.amount, 5000);
+  const transferFee = asNumber(els.transferFee, 0);
+  const sellableAmount = Math.max(0, amount - transferFee);
+  const shouldShow =
+    isManualRateMode() && Number.isFinite(referenceRate) && Number.isFinite(effectiveRate);
+
+  els.rateDiffBox.hidden = !shouldShow;
+  if (!shouldShow) return;
+
+  const diff = effectiveRate - referenceRate;
+  const impact = diff * sellableAmount;
+  const tone = diff > 0 ? "positive" : diff < 0 ? "negative" : "neutral";
+  els.rateDiff.className = tone;
+  els.rateDiff.textContent = formatRate(diff, true);
+  els.rateDiffImpact.textContent = `${formatAmount(sellableAmount)} 기준 영향 ${formatMoney(impact, true)}`;
 }
 
 function renderTable(rows) {
@@ -280,6 +310,7 @@ function renderSummary(rows) {
   const effectiveRate = getEffectiveKbRate();
   els.effectiveRate.textContent = formatRate(effectiveRate);
   els.effectiveRateHint.textContent = getEffectiveHint();
+  renderRateDiff();
   els.inputWarning.hidden = !invalid;
   els.inputWarning.textContent = invalid;
 
@@ -310,7 +341,7 @@ function render() {
   els.amountBadge.textContent = amountText;
   els.amountSummary.textContent = amountText;
   els.tableAmountLabel.textContent = amountText;
-  els.manualRateField.classList.toggle("visible", els.kbMode.value === "manual");
+  els.manualRateField.classList.toggle("visible", isManualRateMode());
   renderKb();
   const rows = calculateRows();
   renderSummary(rows);
