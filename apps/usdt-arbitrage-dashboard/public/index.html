@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>USDT 환차익 대시보드</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" type="module"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="topbar" aria-label="상단 요약">
+        <div>
+          <p class="eyebrow">Bithumb / Upbit / KB</p>
+          <h1>USDT 환차익 대시보드</h1>
+        </div>
+        <div class="topMeta">
+          <div class="basisBadge">
+            <span>기준 수량</span>
+            <strong id="amountBadge">5,000 USDT</strong>
+          </div>
+          <div class="status">
+            <span id="refreshDot" class="dot"></span>
+            <span id="statusText">실시간 데이터 대기 중</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="heroGrid" aria-label="핵심 수익 요약">
+        <article class="profitHero">
+          <div>
+            <span class="label">최고 예상 순익</span>
+            <strong id="bestProfit">-</strong>
+            <small id="bestExchange">거래소 비교 전</small>
+          </div>
+          <p>
+            <b id="amountSummary">5,000 USDT</b> 기준, 호가 평균 매수가와 거래소별 수수료를 반영합니다.
+          </p>
+        </article>
+
+        <article class="metric">
+          <span class="label">KB 적용 환율</span>
+          <strong id="effectiveRate">-</strong>
+          <small id="effectiveRateHint">90% 우대 계산 전</small>
+        </article>
+
+        <article class="metric">
+          <span class="label">최저 필요 KB 환율</span>
+          <strong id="breakEvenRate">-</strong>
+          <small>수수료와 고정비 포함</small>
+        </article>
+      </section>
+
+      <section class="riskBanner" aria-label="핵심 주의">
+        USDT는 은행 USD가 아닙니다. 현금화 경로부터 확인하세요.
+      </section>
+
+      <section class="workbench">
+        <aside class="panel controlsPanel" aria-label="계산 설정">
+          <div class="panelHead compact">
+            <h2>계산 설정</h2>
+            <p>기본값은 5,000 USDT 기준입니다.</p>
+          </div>
+
+          <div class="controlGrid">
+            <label class="field primaryAmount">
+              <span>테더 수량</span>
+              <input id="amountInput" type="number" min="1" step="1" value="5000" />
+            </label>
+            <label class="field">
+              <span>업비트 수수료</span>
+              <div class="inputSuffix">
+                <input id="upbitFeeInput" type="number" min="0" step="0.001" value="0.05" />
+                <span>%</span>
+              </div>
+            </label>
+            <label class="field">
+              <span>빗썸 수수료</span>
+              <div class="inputSuffix">
+                <input id="bithumbFeeInput" type="number" min="0" step="0.001" value="0.04" />
+                <span>%</span>
+              </div>
+            </label>
+            <label class="field">
+              <span>전송 수수료</span>
+              <div class="inputSuffix">
+                <input id="transferFeeInput" type="number" min="0" step="0.01" value="0" />
+                <span>USDT</span>
+              </div>
+            </label>
+            <label class="field">
+              <span>보수적 매수가 버퍼</span>
+              <div class="inputSuffix">
+                <input id="priceBufferInput" type="number" min="0" step="0.01" value="0" />
+                <span>원</span>
+              </div>
+            </label>
+            <label class="field">
+              <span>고정비</span>
+              <div class="inputSuffix">
+                <input id="fixedCostInput" type="number" min="0" step="100" value="0" />
+                <span>원</span>
+              </div>
+            </label>
+            <label class="field">
+              <span>KB 기준</span>
+              <select id="kbModeInput">
+                <option value="cashSell">현찰 파실 때 90% 우대</option>
+                <option value="remittanceReceive">송금 받을 때 90% 우대</option>
+                <option value="baseRate">매매기준율</option>
+                <option value="manual">수동 입력</option>
+              </select>
+            </label>
+            <label class="field manualField" id="manualRateField">
+              <span>수동 KB 환율</span>
+              <div class="inputSuffix">
+                <input id="manualRateInput" type="number" min="0" step="0.01" value="0" />
+                <span>원</span>
+              </div>
+            </label>
+            <button id="refreshButton" class="primaryButton" type="button">갱신</button>
+            <div id="inputWarning" class="inputWarning" role="alert" hidden></div>
+          </div>
+        </aside>
+
+        <section class="mainStack">
+          <article class="panel">
+            <div class="panelHead">
+              <div>
+                <h2>거래소별 <span id="tableAmountLabel">5,000 USDT</span> 예상</h2>
+                <p>호가창에서 기준 수량을 사는 가중평균가로 계산합니다.</p>
+              </div>
+            </div>
+            <div class="tableWrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>거래소</th>
+                    <th>최근 체결가</th>
+                    <th>호가 평균가</th>
+                    <th>스프레드</th>
+                    <th>예상 순익</th>
+                  </tr>
+                </thead>
+                <tbody id="exchangeRows">
+                  <tr>
+                    <td colspan="5" class="empty">데이터를 불러오는 중입니다.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panelHead compact">
+              <h2>KB 환율</h2>
+              <p id="kbTime">-</p>
+            </div>
+            <dl class="rateList">
+              <div>
+                <dt>매매기준율</dt>
+                <dd id="kbBase">-</dd>
+              </div>
+              <div>
+                <dt>현찰 파실 때</dt>
+                <dd id="kbCashSell">-</dd>
+              </div>
+              <div>
+                <dt>현찰 파실 때 90% 우대</dt>
+                <dd id="kbCashSellPreferred">-</dd>
+              </div>
+              <div>
+                <dt>송금 받을 때</dt>
+                <dd id="kbReceive">-</dd>
+              </div>
+              <div>
+                <dt>송금 받을 때 90% 우대</dt>
+                <dd id="kbReceivePreferred">-</dd>
+              </div>
+            </dl>
+          </article>
+        </section>
+      </section>
+
+      <section class="notice" aria-label="주의사항">
+        <strong>주의</strong>
+        <p>
+          실제 수익은 체결가, 호가 잔량, 거래소별 수수료, 출금 네트워크, USDT/USD 괴리,
+          은행의 실제 적용 환율과 한도에 따라 달라집니다.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

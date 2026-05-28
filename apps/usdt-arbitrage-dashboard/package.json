@@ -1,0 +1,9 @@
+{
+  "name": "usdt-arbitrage-dashboard",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "verify": "node scripts/verify.mjs"
+  }
+}
