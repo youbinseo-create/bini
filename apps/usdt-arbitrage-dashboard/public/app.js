@@ -221,8 +221,8 @@ function getEffectiveRateInfo() {
     return {
       rate: fallbackRate,
       source: "fallback",
-      title: "1차 Star FX 미입력, 2차 KB 대안 적용",
-      detail: "Star FX 앱 환율이 없어서 KB 송금 받을 때 90% 우대를 임시 기준으로 사용합니다.",
+      title: "Star FX 앱 환율 대기 중, KB 대안 사용",
+      detail: "앱 환율을 입력하면 Star FX 기준으로 바로 바뀝니다. 지금은 KB 송금 받을 때 90% 우대를 임시 기준으로 사용합니다.",
     };
   }
 
