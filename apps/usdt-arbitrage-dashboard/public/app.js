@@ -213,7 +213,7 @@ function getEffectiveRateInfo() {
         rate: starFxRate,
         source: "starFx",
         title: "1차 Star FX 앱 환율 적용",
-        detail: "앱에서 확인한 고객적용환율을 그대로 사용합니다.",
+        detail: "앱에서 확인한 고객적용환율을 1차 기준으로 그대로 사용합니다.",
       };
     }
 
@@ -221,8 +221,8 @@ function getEffectiveRateInfo() {
     return {
       rate: fallbackRate,
       source: "fallback",
-      title: "Star FX 앱 환율 대기 중, KB 대안 사용",
-      detail: "앱 환율을 입력하면 Star FX 기준으로 바로 바뀝니다. 지금은 KB 송금 받을 때 90% 우대를 임시 기준으로 사용합니다.",
+      title: "Star FX 미입력, KB 공개환율 대안 사용",
+      detail: "이 값은 KB Star FX 앱 고객적용환율이 아닙니다. 앱 매도환율을 입력해야 실제 기준에 맞습니다.",
     };
   }
 
@@ -258,7 +258,7 @@ function getEffectiveRateInfo() {
       rate: derived?.receivePreferred ?? null,
       source: "kb",
       title: "KB 송금 받을 때 90% 우대 적용",
-      detail: "KB 송금 받을 때 환율에서 스프레드 90% 우대를 계산합니다.",
+      detail: "KB 공개 송금 받을 때 환율에서 스프레드 90% 우대를 계산합니다.",
     };
   }
 
@@ -266,7 +266,7 @@ function getEffectiveRateInfo() {
     rate: derived?.cashSellPreferred ?? null,
     source: "kb",
     title: "KB 현찰 파실 때 90% 우대 적용",
-    detail: "KB 현찰 파실 때 환율에서 스프레드 90% 우대를 계산합니다.",
+    detail: "KB 공개 현찰 파실 때 환율에서 스프레드 90% 우대를 계산합니다.",
   };
 }
 

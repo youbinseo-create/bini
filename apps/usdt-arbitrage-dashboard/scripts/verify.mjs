@@ -94,7 +94,7 @@ try {
     "addTrade",
     "deleteTrade",
     "getEffectiveRateInfo",
-    "Star FX 앱 환율 대기 중, KB 대안 사용",
+    "Star FX 미입력, KB 공개환율 대안 사용",
     "setInterval(loadQuotes, 10_000)",
   ]) {
     assert.ok(appJs.includes(marker), `App script is missing expected marker: ${marker}`);

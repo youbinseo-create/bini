@@ -39,20 +39,21 @@
         </article>
 
         <article class="metric">
-          <span class="label">KB / Star FX 적용 환율</span>
+          <span class="label">계산 적용 환율</span>
           <strong id="effectiveRate">-</strong>
-          <small id="effectiveRateHint">90% 우대 계산 전</small>
+          <small id="effectiveRateHint">Star FX 입력 전 KB 대안</small>
         </article>
 
         <article class="metric">
-          <span class="label">최저 필요 KB 환율</span>
+          <span class="label">최저 필요 매도환율</span>
           <strong id="breakEvenRate">-</strong>
           <small>수수료와 고정비 포함</small>
         </article>
       </section>
 
       <section class="riskBanner" aria-label="핵심 주의">
-        Star FX 앱 환율이 2원 다르면 5,000 USDT 기준 약 10,000원이 달라집니다. USDT 현금화 경로도 함께 확인하세요.
+        KB Star FX 앱값은 자동 수집값이 아닙니다. 앱에 표시된 고객적용환율을 입력해야 1차 기준으로 맞고,
+        입력 전 숫자는 KB 공개환율 기반 대안입니다. 2원 차이면 5,000 USDT 기준 약 10,000원이 달라집니다.
       </section>
 
       <section class="workbench">
@@ -105,7 +106,7 @@
             <label class="field">
               <span>KB 기준</span>
               <select id="kbModeInput">
-                <option value="starFx" selected>Star FX 앱 매도환율</option>
+                <option value="starFx" selected>Star FX 앱 직접 입력</option>
                 <option value="remittanceReceive">송금 받을 때 90% 우대</option>
                 <option value="cashSell">현찰 파실 때 90% 우대</option>
                 <option value="baseRate">매매기준율</option>
@@ -113,9 +114,9 @@
               </select>
             </label>
             <label class="field manualField" id="manualRateField">
-              <span>Star FX 앱 표시 환율</span>
+              <span>KB Star FX 앱 고객적용환율</span>
               <div class="inputSuffix">
-                <input id="manualRateInput" type="number" min="0" step="0.01" placeholder="앱 환율 입력" />
+                <input id="manualRateInput" type="number" min="0" step="0.01" placeholder="앱 매도환율 입력" />
                 <span>원</span>
               </div>
             </label>
@@ -124,7 +125,7 @@
               <small id="rateSourceDetail">-</small>
             </div>
             <div id="rateDiffBox" class="rateDiffBox" hidden>
-              <span>KB 전신환 90% 추정 대비</span>
+              <span>KB 공개환율 대안 대비</span>
               <strong id="rateDiff">-</strong>
               <small id="rateDiffImpact">5,000 USDT 기준 영향 -</small>
             </div>
